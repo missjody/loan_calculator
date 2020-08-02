@@ -12,23 +12,38 @@
 
     <h2> Calculate your Monthly Payment!</h2>
 
-    <!-- input: loan_amount -->
-    <h4>Enter your loan balance here: <input type="text" id="loan_amount"></input></h4>
-    <!-- input: yearly_rate -->
-    <h4>Enter your interest rate here: <input type="number" step="0.01" id="yearly_rate"></input>%</h4>
-    <!-- input: loan_term (months) -->
-    <h4>Enter your loan term in months here: <input type="number" id="loan_term"></h4>
+    <form>
 
-    <!-- button: run calculation -->
-    <button onclick="calculate()">Calculate!</button>
+        <!-- input: loan_amount -->
+        <label for="loan_amount">Enter your desired loan balance here:</label>
+        <input type="text" id="loan_amount" name="loan_amount"><br><br>
 
-    <!-- start over button -->
-    <button onClick="location.reload()">Start Over</button>
+        <!-- input: loan_term (months) -->
+        <label for="loan_term">Enter your desired loan term in months here:</label>
+        <input type="number" id="loan_term" name="loan_term"><br><br>
+
+        <!-- input: estimated credit score -->
+        <label for="yearly_rate">What is your credit score:</label>
+        <select id="score" name="score">
+            <option value="APlus">Excellent (740 & above)</option>
+            <option value="A">Great (690-739)</option>
+            <option value="B">Good (660-689)</option>
+            <option value="C">Fair (620-659)</option>
+            <option value="D">Ok (619 & Below)</option>
+        </select><br><br>
+
+        <!-- button: run calculation -->
+        <input type="submit" value="Calculate!">
+
+        <!-- start over button -->
+        <input type="reset" value="Start Over">
+
+    </form>
 
     <!-- display: monthly payment -->
 
     <!-- calculate the monthly payment -->
-    <script>
+    <!-- <script>
         const calculate = () => {
             // i equals interest entered / 100 / 12 
             let i = (document.getElementById("yearly_rate").value / 100) / 12;
@@ -60,7 +75,7 @@
 
         }
 
-    </script>
+    </script> -->
 
 
 </body>
