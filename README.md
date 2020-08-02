@@ -8,10 +8,11 @@ Sat up simple interest calculator after retrieving the formula from calculatorso
 ## Version 2
 *new requirements*
 
-- [x] Start a new repository in github and add your code. 
-- [ ] Modify the “clear form” to use a <form> and <input type=”reset”>
-- [ ] Modify the form to use a <select> for credit score, the rate should be 
+* Start a new repository in github and add your code. 
+* Modify the “clear form” to use a <form> and <input type=”reset”>
+* Modify the form to use a <select> for credit score, the rate should be 
       selected from a variable in the <script>
+
 
 ```html
 <select id="score" name="score">
