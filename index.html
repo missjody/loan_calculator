@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Exercise</title>
+</head>
+
+
+<body>
+
+    <h2> Calculate your Monthly Payment!</h2>
+
+    <!-- input: loan_amount -->
+    <h4>Enter your loan balance here: <input type="text" id="loan_amount"></input></h4>
+    <!-- input: yearly_rate -->
+    <h4>Enter your interest rate here: <input type="number" step="0.01" id="yearly_rate"></input>%</h4>
+    <!-- input: loan_term (months) -->
+    <h4>Enter your loan term in months here: <input type="number" id="loan_term"></h4>
+
+    <!-- button: run calculation -->
+    <button onclick="calculate()">Calculate!</button>
+
+    <!-- start over button -->
+    <button onClick="location.reload()">Start Over</button>
+
+    <!-- display: monthly payment -->
+
+    <!-- calculate the monthly payment -->
+    <script>
+        const calculate = () => {
+            // i equals interest entered / 100 / 12 
+            let i = (document.getElementById("yearly_rate").value / 100) / 12;
+            console.log("i ", i);
+
+            // n equals loan term
+            let n = document.getElementById("loan_term").value;
+            console.log("n ", n);
+
+            // PV equals loan amount
+            let PV = document.getElementById("loan_amount").value;
+            console.log("PV ", PV);
+
+            let prep = (1 + i);
+            console.log("prep ", prep);
+
+            let power_move = Math.pow(prep, n);
+            console.log("power_move ", power_move)
+
+            // monthly payment
+            let monthly_prep = (PV * i * power_move) / (power_move - 1);
+
+            let monthly_payment = monthly_prep.toFixed(2);
+            console.log("$", monthly_payment);
+
+            let answer = document.createElement("h4");
+            answer.innerHTML = "Your estimated monthly payment is: $" + monthly_payment;
+            document.body.appendChild(answer);
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
