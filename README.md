@@ -1,5 +1,5 @@
 # Loan Calculator 
-*creating a loan calculator in incremental steps*
+*building a loan calculator in incremental steps*
 
 ## Version 1
 
@@ -8,7 +8,7 @@ Sat up simple interest calculator after retrieving the formula from calculatorso
 ## Version 2
 *new requirements*
 
-- [x] Start a new repository in github and add your code. Then make these changes.
+- [x] Start a new repository in github and add your code. 
 - [ ] Modify the “clear form” to use a <form> and <input type=”reset”>
 - [ ] Modify the form to use a <select> for credit score, the rate should be 
       selected from a variable in the <script>
