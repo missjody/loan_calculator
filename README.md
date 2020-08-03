@@ -1,6 +1,7 @@
 # Loan Calculator 
 *building a loan calculator in incremental steps*
 
+Link to most up to date version of Loan Calculator [here](https://missjody.github.io/loan_calculator/)
 ## Version 1
 
 Sat up simple interest calculator after retrieving the formula from calculatorsoup.com. Original version features two buttons: one to run the calculation function and one to refresh the page to restart the process.
