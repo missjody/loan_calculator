@@ -34,3 +34,5 @@ Sat up simple interest calculator after retrieving the formula from calculatorso
   *  B="4.990"
   *  C="6.490"
   *  D="8.490"
+  
+Still to do on this version: pop up asking them to enter information if inputs are left blank. 
