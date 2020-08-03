@@ -50,56 +50,56 @@
             // switch statement to generate interest rate
             // passing in option value
             let x = document.getElementById("score").selectedIndex;
-            console.log(document.getElementsByTagName("option")[x].value)
-            // let interest;
-            // switch (x.value) {
-            //     case "APlus":
-            //         interest = 3.990;
-            //         console.log("interest in switch ", interest)
-            //         break;
-            //     case "A":
-            //         interest = 4.490;
-            //         break;
-            //     case "B":
-            //         interest = 4.990;
-            //         break;
-            //     case "C":
-            //         interest = 6.490;
-            //         break;
-            //     case "D":
-            //         interest = 8.490;
-            //         break;
-            // }
+            let tier = document.getElementsByTagName("option")[x].value;
+            let interest;
 
-            // console.log("interest ", interest);
+            switch (tier) {
+                case "APlus":
+                    interest = 3.990;
+                    break;
+                case "A":
+                    interest = 4.490;
+                    break;
+                case "B":
+                    interest = 4.990;
+                    break;
+                case "C":
+                    interest = 6.490;
+                    break;
+                case "D":
+                    interest = 8.490;
+                    break;
+            }
 
-            // // i equals interest entered / 100 / 12 
-            // let i = (interest / 100) / 12;
-            // console.log("i ", i);
+            console.log("interest ", interest.toFixed(3));
 
-            // // n equals loan term
-            // let n = document.getElementById("loan_term").value;
-            // console.log("n ", n);
+            // i equals interest entered / 100 / 12 
+            let i = (interest.toFixed(3) / 100) / 12;
+            console.log("i ", i);
 
-            // // PV equals loan amount
-            // let PV = document.getElementById("loan_amount").value;
-            // console.log("PV ", PV);
+            // n equals loan term
+            let n = document.getElementById("loan_term").value;
+            console.log("n ", n);
 
-            // let prep = (1 + i);
-            // console.log("prep ", prep);
+            // PV equals loan amount
+            let PV = document.getElementById("loan_amount").value;
+            console.log("PV ", PV);
 
-            // let power_move = Math.pow(prep, n);
-            // console.log("power_move ", power_move)
+            let prep = (1 + i);
+            console.log("prep ", prep);
 
-            // // monthly payment
-            // let monthly_prep = (PV * i * power_move) / (power_move - 1);
+            let power_move = Math.pow(prep, n);
+            console.log("power_move ", power_move)
 
-            // let monthly_payment = monthly_prep.toFixed(2);
-            // console.log("$", monthly_payment);
+            // monthly payment
+            let monthly_prep = (PV * i * power_move) / (power_move - 1);
 
-            // let answer = document.createElement("h4");
-            // answer.innerHTML = "Your estimated monthly payment is: $" + monthly_payment;
-            // document.body.appendChild(answer);
+            let monthly_payment = monthly_prep.toFixed(2);
+            console.log("$", monthly_payment);
+
+            let answer = document.createElement("h4");
+            answer.innerHTML = "Your estimated monthly payment is: $" + monthly_payment;
+            document.body.appendChild(answer);
 
         }
 
