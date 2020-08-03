@@ -23,7 +23,7 @@
         <input type="number" id="loan_term" name="loan_term"><br><br>
 
         <!-- input: estimated credit score -->
-        <label for="yearly_rate">What is your credit score:</label>
+        <label for="score">What is your credit score:</label>
         <select id="score" name="score">
             <option value="APlus">Excellent (740 & above)</option>
             <option value="A">Great (690-739)</option>
@@ -33,7 +33,7 @@
         </select><br><br>
 
         <!-- button: run calculation -->
-        <input type="submit" value="Calculate!">
+        <input type="button" value="Calculate!" onclick="calculate()">
 
         <!-- start over button -->
         <input type="reset" value="Start Over">
@@ -43,39 +43,68 @@
     <!-- display: monthly payment -->
 
     <!-- calculate the monthly payment -->
-    <!-- <script>
+    <script>
+
         const calculate = () => {
-            // i equals interest entered / 100 / 12 
-            let i = (document.getElementById("yearly_rate").value / 100) / 12;
-            console.log("i ", i);
 
-            // n equals loan term
-            let n = document.getElementById("loan_term").value;
-            console.log("n ", n);
+            // switch statement to generate interest rate
+            // passing in option value
+            let x = document.getElementById("score").selectedIndex;
+            console.log(document.getElementsByTagName("option")[x].value)
+            // let interest;
+            // switch (x.value) {
+            //     case "APlus":
+            //         interest = 3.990;
+            //         console.log("interest in switch ", interest)
+            //         break;
+            //     case "A":
+            //         interest = 4.490;
+            //         break;
+            //     case "B":
+            //         interest = 4.990;
+            //         break;
+            //     case "C":
+            //         interest = 6.490;
+            //         break;
+            //     case "D":
+            //         interest = 8.490;
+            //         break;
+            // }
 
-            // PV equals loan amount
-            let PV = document.getElementById("loan_amount").value;
-            console.log("PV ", PV);
+            // console.log("interest ", interest);
 
-            let prep = (1 + i);
-            console.log("prep ", prep);
+            // // i equals interest entered / 100 / 12 
+            // let i = (interest / 100) / 12;
+            // console.log("i ", i);
 
-            let power_move = Math.pow(prep, n);
-            console.log("power_move ", power_move)
+            // // n equals loan term
+            // let n = document.getElementById("loan_term").value;
+            // console.log("n ", n);
 
-            // monthly payment
-            let monthly_prep = (PV * i * power_move) / (power_move - 1);
+            // // PV equals loan amount
+            // let PV = document.getElementById("loan_amount").value;
+            // console.log("PV ", PV);
 
-            let monthly_payment = monthly_prep.toFixed(2);
-            console.log("$", monthly_payment);
+            // let prep = (1 + i);
+            // console.log("prep ", prep);
 
-            let answer = document.createElement("h4");
-            answer.innerHTML = "Your estimated monthly payment is: $" + monthly_payment;
-            document.body.appendChild(answer);
+            // let power_move = Math.pow(prep, n);
+            // console.log("power_move ", power_move)
+
+            // // monthly payment
+            // let monthly_prep = (PV * i * power_move) / (power_move - 1);
+
+            // let monthly_payment = monthly_prep.toFixed(2);
+            // console.log("$", monthly_payment);
+
+            // let answer = document.createElement("h4");
+            // answer.innerHTML = "Your estimated monthly payment is: $" + monthly_payment;
+            // document.body.appendChild(answer);
 
         }
 
-    </script> -->
+
+    </script>
 
 
 </body>
