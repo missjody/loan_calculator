@@ -36,7 +36,7 @@
         <input type="button" value="Calculate!" onclick="calculate()">
 
         <!-- start over button -->
-        <input type="reset" value="Start Over">
+        <input type="reset" value="Start Over!" id="startOver">
 
     </form>
 
@@ -46,6 +46,16 @@
     <script>
 
         const calculate = () => {
+
+
+            console.log(document.getElementById("child"))
+            // remove last estimated payment 
+            if (document.getElementById("child")) {
+                console.log("exists")
+                let kid = document.getElementById("child");
+                console.log("kid ", kid)
+                kid.remove();
+            };
 
             // switch statement to generate interest rate
             // passing in option value
@@ -99,9 +109,19 @@
 
             let answer = document.createElement("h4");
             answer.innerHTML = "Your estimated monthly payment is: $" + monthly_payment;
+            answer.id = "child";
             document.body.appendChild(answer);
 
         }
+
+        // reset child h4 on start over button click
+        document.getElementById("startOver").addEventListener("click", resetH);
+
+        function resetH() {
+            let kid = document.getElementById("child");
+            console.log("kid ", kid)
+            kid.remove();
+        };
 
 
     </script>

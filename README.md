@@ -13,7 +13,6 @@ Sat up simple interest calculator after retrieving the formula from calculatorso
     * Rewrote the end of the application so I could begin building off of it
 
 ✔ Modify the “clear form” to use a form and input type of reset.
-    * Changed over both buttons from button to input
 
 ✔ Modify the form to use a select for credit score, the rate should be 
       selected from a variable in the script.
@@ -28,7 +27,7 @@ Sat up simple interest calculator after retrieving the formula from calculatorso
 </select>
 ```
 
-Then use the variables in the script of:
+✔ Then use the variables in the script of:
   *  APlus="3.990"
   *  A="4.490"
   *  B="4.990"
