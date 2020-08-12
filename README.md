@@ -36,3 +36,16 @@ Sat up simple interest calculator after retrieving the formula from calculatorso
   *  D="8.490"
   
 Still to do on this version: pop up asking them to enter information if inputs are left blank. 
+
+## Version 3.1
+*merged @jeremysimmons code from 8/3 on 8/11*
+
+* remove whitespace as markup, use styles
+* change input type to number (todo, implement required fields)
+* use object to lookup rates, instead of switch
+* use static element to hold result, instead of dynamic
+* reuse reset form, form onreset event
+
+## Version 3.2
+
+* set up catch for missing input entries

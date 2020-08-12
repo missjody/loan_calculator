@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
         .input_group {
             margin-bottom: 1em;
         }
+
         .input_group label {
             display: block;
         }
@@ -18,106 +20,112 @@
 
     <h1>Calculate your Monthly Payment</h2>
 
-    <form onreset="resetForm();">
+        <form onreset="resetForm();">
 
-        <!-- input: loan_amount -->
-        <div class="input_group">
-            <label for="loan_amount">Desired loan amount:</label>
-            <input id="loan_amount" name="loan_amount" type="number">
-        </div>
+            <!-- input: loan_amount -->
+            <div class="input_group">
+                <label for="loan_amount">Desired loan amount:</label>
+                <input id="loan_amount" name="loan_amount" type="number">
+            </div>
 
-        <!-- input: loan_term (months) -->
-        <div class="input_group">
-            <label for="loan_term">Desired loan term:</label>
-            <input type="number" id="loan_term" name="loan_term">
-        </div>
+            <!-- input: loan_term (months) -->
+            <div class="input_group">
+                <label for="loan_term">Desired loan term:</label>
+                <input type="number" id="loan_term" name="loan_term">
+            </div>
 
-        <!-- input: estimated credit score -->
-        <div class="input_group">
-            <label for="score">Credit score:</label>
-            <select id="score" name="score">
-                <option value="APlus">Excellent (740 & above)</option>
-                <option value="A">Great (690-739)</option>
-                <option value="B">Good (660-689)</option>
-                <option value="C">Fair (620-659)</option>
-                <option value="D">Ok (619 & Below)</option>
-            </select>
-        </div>
+            <!-- input: estimated credit score -->
+            <div class="input_group">
+                <label for="score">Credit score:</label>
+                <select id="score" name="score">
+                    <option value="APlus">Excellent (740 & above)</option>
+                    <option value="A">Great (690-739)</option>
+                    <option value="B">Good (660-689)</option>
+                    <option value="C">Fair (620-659)</option>
+                    <option value="D">Ok (619 & Below)</option>
+                </select>
+            </div>
 
-        <div class="input_group">
-            Estimated monthly payment: <span id="estimatedPayment"></span>
-        </div>
+            <div class="input_group">
+                Estimated monthly payment: <span id="estimatedPayment"></span>
+            </div>
 
-        <div class="controls">
+            <div class="controls">
 
-            <!-- button: run calculation -->
-            <input type="button" value="Calculate!" onclick="calculate()">
+                <!-- button: run calculation -->
+                <input type="button" value="Calculate!" onclick="calculate()">
 
-            <!-- start over button -->
-            <input type="reset" value="Start Over!">
-        
-        </div>
+                <!-- start over button -->
+                <input type="reset" value="Start Over!">
 
-    </form>
+            </div>
 
-    <!-- display: monthly payment -->
+        </form>
 
-    <!-- calculate the monthly payment -->
-    <script>
+        <!-- display: monthly payment -->
 
-        function calculate() {
+        <!-- calculate the monthly payment -->
+        <script>
 
-            resetForm();
+            function calculate() {
 
-            // switch statement to generate interest rate
-            // passing in option value
-            let scoreEl = document.getElementById("score");
-            let selectedScore = scoreEl.selectedIndex;
-            let tier = scoreEl.querySelectorAll("option")[selectedScore].value;
-            let rates = {
-                "APlus": 3.990,
-                "A": 4.490,
-                "B": 4.990,
-                "C": 6.490,
-                "D": 8.490
+                resetForm();
+
+
+                // switch statement to generate interest rate
+                // passing in option value
+                let scoreEl = document.getElementById("score");
+                let selectedScore = scoreEl.selectedIndex;
+                let tier = scoreEl.querySelectorAll("option")[selectedScore].value;
+                let rates = {
+                    "APlus": 3.990,
+                    "A": 4.490,
+                    "B": 4.990,
+                    "C": 6.490,
+                    "D": 8.490
+                };
+                let interest = rates[tier];
+                console.log("interest ", interest.toFixed(3));
+
+                // i equals interest entered / 100 / 12 
+                let i = (interest.toFixed(3) / 100) / 12;
+                console.log("i ", i);
+
+                // n equals loan term
+                let n = document.getElementById("loan_term").value;
+                console.log("n ", n);
+
+                // PV equals loan amount
+                let PV = document.getElementById("loan_amount").value;
+                console.log("PV ", PV);
+
+                let prep = (1 + i);
+                console.log("prep ", prep);
+
+                let power_move = Math.pow(prep, n);
+                console.log("power_move ", power_move)
+
+                // monthly payment
+                let monthly_prep = (PV * i * power_move) / (power_move - 1);
+
+                let monthly_payment = monthly_prep.toFixed(2);
+                console.log("$", monthly_payment);
+
+                if (isFinite(monthly_payment)) {
+                    var epEl = document.getElementById('estimatedPayment');
+                    epEl.innerText = "$" + monthly_payment;
+                } else {
+                    return alert("Please give this calculator some numbers to crunch!")
+                }
+
+            }
+
+            function resetForm() {
+                var epEl = document.getElementById('estimatedPayment');
+                epEl.innerText = "";
             };
-            let interest = rates[tier];
-            console.log("interest ", interest.toFixed(3));
 
-            // i equals interest entered / 100 / 12 
-            let i = (interest.toFixed(3) / 100) / 12;
-            console.log("i ", i);
-
-            // n equals loan term
-            let n = document.getElementById("loan_term").value;
-            console.log("n ", n);
-
-            // PV equals loan amount
-            let PV = document.getElementById("loan_amount").value;
-            console.log("PV ", PV);
-
-            let prep = (1 + i);
-            console.log("prep ", prep);
-
-            let power_move = Math.pow(prep, n);
-            console.log("power_move ", power_move)
-
-            // monthly payment
-            let monthly_prep = (PV * i * power_move) / (power_move - 1);
-
-            let monthly_payment = monthly_prep.toFixed(2);
-            console.log("$", monthly_payment);
-
-            var epEl = document.getElementById('estimatedPayment');
-            epEl.innerText = monthly_payment;
-        }
-
-        function resetForm() {
-            var epEl = document.getElementById('estimatedPayment');
-            epEl.innerText = "";
-        };
-
-    </script>
+        </script>
 
 
 </body>
