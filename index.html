@@ -34,10 +34,21 @@
           <!-- * Loan SubType – in this case, Auto has a “Year”, New & Used -->
           <select class="custom-select">
             <option selected>Choose your loan product</option>
-            <option value="New">New Auto</option>
-            <option value="Used">Used Auto</option>
+            <option value="New">New Auto (2017 & newer)</option>
+            <option value="Used">Used Auto (2010 - 2016)</option>
           </select>
         </div>
+
+        <div class="form-group">
+          <!-- Desired term -->
+          <select class="custom-select">
+            <option selected>Choose your loan term</option>
+            <option value="60">60 months</option>
+            <option value="72">72 months</option>
+            <option value="84">84 months</option>
+          </select>
+        </div>
+
 
         <div class="form-group">
           <!-- * Loan Amount - Hard-Code minAmount as 500, maxAmount as 65000 -->
