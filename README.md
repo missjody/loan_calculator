@@ -2,9 +2,34 @@
 *building a loan calculator in incremental steps*
 
 Link to most up to date version of Loan Calculator [here](https://missjody.github.io/loan_calculator/)
-## Version 1
 
-Sat up simple interest calculator after retrieving the formula from calculatorsoup.com. Original version features two buttons: one to run the calculation function and one to refresh the page to restart the process.
+## Version 4
+
+* upgraded to express server, jquery
+
+*new requirements*
+
+Display the following drop-downs which rely on eachother
+  * Loan Product – in this case, there is only one product in the data, Auto
+  * Loan SubType – in this case, Auto has a “Year”, New & Used
+  * Loan Amount - Hard-Code minAmount as 500, maxAmount as 65000
+  * Credit Score
+  
+Once all of these items are selected, a rate is auto-filled, and the calculation based on amount desired is specified
+
+
+## Version 3.2
+
+* set up catch for missing input entries
+
+## Version 3.1
+*merged @jeremysimmons code from 8/3 on 8/11*
+
+* remove whitespace as markup, use styles
+* change input type to number (todo, implement required fields)
+* use object to lookup rates, instead of switch
+* use static element to hold result, instead of dynamic
+* reuse reset form, form onreset event
 
 ## Version 2
 *new requirements*
@@ -37,15 +62,9 @@ Sat up simple interest calculator after retrieving the formula from calculatorso
   
 Still to do on this version: pop up asking them to enter information if inputs are left blank. 
 
-## Version 3.1
-*merged @jeremysimmons code from 8/3 on 8/11*
+## Version 1
 
-* remove whitespace as markup, use styles
-* change input type to number (todo, implement required fields)
-* use object to lookup rates, instead of switch
-* use static element to hold result, instead of dynamic
-* reuse reset form, form onreset event
+Sat up simple interest calculator after retrieving the formula from calculatorsoup.com. Original version features two buttons: one to run the calculation function and one to refresh the page to restart the process.
 
-## Version 3.2
 
-* set up catch for missing input entries
+

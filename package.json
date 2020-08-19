@@ -1,0 +1,15 @@
+{
+  "name": "loan_calculator",
+  "version": "1.0.0",
+  "description": "application that allows you to calculate your estimated monthly loan payment based on information provided",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "miss jody",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mysql": "^2.16.0"
+  }
+}

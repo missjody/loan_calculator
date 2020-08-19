@@ -2,132 +2,44 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brain Exercise</title>
-    <style>
-        .input_group {
-            margin-bottom: 1em;
-        }
-
-        .input_group label {
-            display: block;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Loan Calculator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Loan Calculator
+    </a>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
 
-    <h1>Calculate your Monthly Payment</h2>
+      <!-- Display the following drop-downs which rely on eachother -->
+      <!-- * Loan Product – in this case, there is only one product in the data, Auto -->
+      <!-- * Loan SubType – in this case, Auto has a “Year”, New & Used -->
+      <!-- * Loan Amount - Hard-Code minAmount as 500, maxAmount as 65000 -->
+      <!-- * Credit Score -->
 
-        <form onreset="resetForm();">
+      <!-- Once all of these items are selected, a rate is auto-filled, and the calculation based on amount desired is specified -->
 
-            <!-- input: loan_amount -->
-            <div class="input_group">
-                <label for="loan_amount">Desired loan amount:</label>
-                <input id="loan_amount" name="loan_amount" type="number">
-            </div>
+    </div>
+  </div>
 
-            <!-- input: loan_term (months) -->
-            <div class="input_group">
-                <label for="loan_term">Desired loan term:</label>
-                <input type="number" id="loan_term" name="loan_term">
-            </div>
-
-            <!-- input: estimated credit score -->
-            <div class="input_group">
-                <label for="score">Credit score:</label>
-                <select id="score" name="score">
-                    <option value="APlus">Excellent (740 & above)</option>
-                    <option value="A">Great (690-739)</option>
-                    <option value="B">Good (660-689)</option>
-                    <option value="C">Fair (620-659)</option>
-                    <option value="D">Ok (619 & Below)</option>
-                </select>
-            </div>
-
-            <div class="input_group">
-                Estimated monthly payment: <span id="estimatedPayment"></span>
-            </div>
-
-            <div class="controls">
-
-                <!-- button: run calculation -->
-                <input type="button" value="Calculate!" onclick="calculate()">
-
-                <!-- start over button -->
-                <input type="reset" value="Start Over!">
-
-            </div>
-
-        </form>
-
-        <!-- display: monthly payment -->
-
-        <!-- calculate the monthly payment -->
-        <script>
-
-            function calculate() {
-
-                resetForm();
-
-
-                // switch statement to generate interest rate
-                // passing in option value
-                let scoreEl = document.getElementById("score");
-                let selectedScore = scoreEl.selectedIndex;
-                let tier = scoreEl.querySelectorAll("option")[selectedScore].value;
-                let rates = {
-                    "APlus": 3.990,
-                    "A": 4.490,
-                    "B": 4.990,
-                    "C": 6.490,
-                    "D": 8.490
-                };
-                let interest = rates[tier];
-                console.log("interest ", interest.toFixed(3));
-
-                // i equals interest entered / 100 / 12 
-                let i = (interest.toFixed(3) / 100) / 12;
-                console.log("i ", i);
-
-                // n equals loan term
-                let n = document.getElementById("loan_term").value;
-                console.log("n ", n);
-
-                // PV equals loan amount
-                let PV = document.getElementById("loan_amount").value;
-                console.log("PV ", PV);
-
-                let prep = (1 + i);
-                console.log("prep ", prep);
-
-                let power_move = Math.pow(prep, n);
-                console.log("power_move ", power_move)
-
-                // monthly payment
-                let monthly_prep = (PV * i * power_move) / (power_move - 1);
-
-                let monthly_payment = monthly_prep.toFixed(2);
-                console.log("$", monthly_payment);
-
-                if (isFinite(monthly_payment)) {
-                    var epEl = document.getElementById('estimatedPayment');
-                    epEl.innerText = "$" + monthly_payment;
-                } else {
-                    return alert("Please give this calculator some numbers to crunch!")
-                }
-
-            }
-
-            function resetForm() {
-                var epEl = document.getElementById('estimatedPayment');
-                epEl.innerText = "";
-            };
-
-        </script>
-
-
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="/js/index.js"></script>
 </body>
 
 </html>
