@@ -3,3 +3,12 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+.container, .form-group  {
+  margin-top: 2rem;
+}
+
+.navbar {
+  background-color: #FCCF32;
+  min-height: 5rem;
+}
