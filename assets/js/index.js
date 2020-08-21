@@ -1,11 +1,43 @@
 // on page load
 // listen for New or Used
+$("#loanProduct")
+    .change(function () {
+        let str = "";
+        $("option:selected").each(function () {
+            str += $(this).val() + " ";
+            console.log("listening to loan product:" + str);
+        });
+    })
+    .change();
+
+
 // listen for term
+$("#loanTerm")
+    .change(function () {
+        let str = "";
+        $("option:selected").each(function () {
+            str += $(this).val() + " ";
+            console.log("listening to loan term:" + str);
+        });
+    })
+    .change();
+
 // listen for credit score
 
+
 // listen for amount entered and 
+$("#loanAmt")
+    .change(function () {
+        let str = "";
+        $("#loanAmt").val(function () {
+            str += $(this).val() + " ";
+            console.log("listening to loan amount:" + str);
+        });
+    })
+    .change();
+
 // alert if loan amt is greater than 65000 or less than 500
-    // using a modal maybe?
+// using a modal maybe?
 
     // if x.auto
     // grab term from entry
