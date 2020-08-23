@@ -10,7 +10,7 @@ const fs = require("fs");
 
 const app = express();
 const PORT = process.env.PORT || 3030;
-let data = JSON.parse(fs.readFileSync("./json/rates.json", "utf8"));
+let data = JSON.parse(fs.readFileSync("./api/rates.json", "utf8"));
 
 /////
 // set up the express app to handle data parsing
@@ -25,6 +25,7 @@ app.use(express.json());
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
+
 
 app.get("/api/rates", function (req, res) {
   return res.json(data);

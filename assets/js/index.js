@@ -42,20 +42,29 @@ function calculate() {
 
     // STILL NEED TO SERVE ACTUAL INTEREST
     // grab loans type of x, term length of term, interest rate of credit score tier
+    $.ajax("api/rates/", {
+        type: "GET",
+        data: "data",
+        dataType: "json"
+    }).then(function (data) {
+        console.log("api call results", JSON.stringify(data))
+    });
+
     // let interest = 
 
-
     // magical math moment
-    let i = interest / 100 / 12;
-    let prep = (1 + i);
-    let power_move = Math.pow(prep, n);
-    let monthly_prep = (PV * i * power_move) / (power_move - 1);
-    let monthly_payment = monthly_prep.toFixed(2);
+    // let i = interest / 100 / 12;
+    // let prep = (1 + i);
+    // let power_move = Math.pow(prep, n);
+    // let monthly_prep = (PV * i * power_move) / (power_move - 1);
+    // let monthly_payment = monthly_prep.toFixed(2);
 
     // STILL NEED TO SET UP
     // if all selections have been made with acceptable information
     // dynamically display the estimated payment below the selections
     // display monthly_payment 
+
+    // $("#monthlyPayent").text(monthly_payment);
 }
 
 // on page load, listen for any form changes
