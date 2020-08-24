@@ -9,7 +9,7 @@ const fs = require("fs");
 // set up Express app
 
 const app = express();
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3035;
 let data = JSON.parse(fs.readFileSync("./api/rates.json", "utf8"));
 
 /////

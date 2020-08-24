@@ -8,8 +8,8 @@ function calculate() {
     // "PLEASE SELECT NEW OR USED"
     let auto = "";
     $("#loanProduct option:selected").each(function () {
-        auto += $(this).val() + " ";
-        console.log("listening to loan product:" + auto);
+        auto += $(this).val();
+        // console.log("listening to loan product:" + auto);
     });
 
 
@@ -18,7 +18,7 @@ function calculate() {
     // "PLEASE SELECT TERM"
     let n = "";
     $("#loanTerm option:selected").each(function () {
-        n += $(this).val() + " ";
+        n += $(this).val();
         console.log("listening to loan term:" + n);
     });
 
@@ -28,7 +28,7 @@ function calculate() {
     // OR IF AMOUNT DOES NOT FALL BETWEEN 499 AND 65001
     // "PLEASE ENTER A VALUE FROM 500 TO 65,000"
     let PV = parseInt($("#loanAmt").val());
-    console.log("listening to loan amount:", PV);
+    // console.log("listening to loan amount:", PV);
 
 
     // grab credit score from entry
@@ -36,8 +36,8 @@ function calculate() {
     // "PLEASE SELECT YOUR SCORE RANGE"
     let tier = "";
     $("#score option:selected").each(function () {
-        tier += $(this).val() + " ";
-        console.log("listening to loan term:" + tier);
+        tier += $(this).val();
+        // console.log("listening to loan term:" + tier);
     });
 
     // STILL NEED TO SERVE ACTUAL INTEREST
@@ -47,10 +47,31 @@ function calculate() {
         data: "data",
         dataType: "json"
     }).then(function (data) {
-        console.log("api call results", JSON.stringify(data))
+
+        //drill down for new rates only
+        let newRates = data.loans.New;
+        console.log("newRates ", newRates)
+
+        // this is supposed to be grabbing the selected term
+        // but it's gabbing before the selection happens
+        let newFilter = { "term": `${n}` };
+        console.log("newFilter ", newFilter)
+
+        // filter down to grab the rates that go with the term selected
+        let newObj = _.filter(newRates, newFilter);
+        console.log("New Array ", newObj);
+
+
+        // translate this to "interest"
+        let newInterest = newObj[0].rate[`${tier}`];
+        console.log("newInterest ", newInterest)
+
+        // repeat the same for used
+
+        // but how do we pass on to the outside? having async hell
+        // everything else runs before this does :(
     });
 
-    // let interest = 
 
     // magical math moment
     // let i = interest / 100 / 12;
