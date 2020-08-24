@@ -1,46 +1,45 @@
 function calculate() {
 
-    // STILL NEED TO SET UP AS AN IFF FOR AUTO
-    // if x.auto
-
-    // listen for New or Used
     // STILL NEED IF NO CAR IS SELECTED DISPLAY LINE
     // "PLEASE SELECT NEW OR USED"
+
+    // STILL NEED IF NO TERM IS SELECTED DISPLAY LINE
+    // "PLEASE SELECT TERM"
+
+    // STILL NEED IF NO AMOUNT IS ENTERED DISPLAY LINE
+    // OR IF AMOUNT DOES NOT FALL BETWEEN 499 AND 65001
+    // "PLEASE ENTER A VALUE FROM 500 TO 65,000"
+
+    // STILL NEED IF NO SCORE RANGE IS SELECTED DISPLAY LINE
+    // "PLEASE SELECT YOUR SCORE RANGE"
+
+    // STILL NEED TO GRAB RATE BASED ON IF NEW OR USED AUTO
+    // IS SELECTED - RIGHT NOW ONLY CALCULATING BASED ON NEW 
+
     let auto = "";
     $("#loanProduct option:selected").each(function () {
         auto += $(this).val();
         // console.log("listening to loan product:" + auto);
     });
 
-
     // grab term from entry
-    // STILL NEED IF NO TERM IS SELECTED DISPLAY LINE
-    // "PLEASE SELECT TERM"
     let n = "";
     $("#loanTerm option:selected").each(function () {
         n += $(this).val();
-        console.log("listening to loan term:" + n);
+        // console.log("listening to loan term:" + n);
     });
 
-
     // grab loan amt from entry
-    // STILL NEED IF NO AMOUNT IS ENTERED DISPLAY LINE
-    // OR IF AMOUNT DOES NOT FALL BETWEEN 499 AND 65001
-    // "PLEASE ENTER A VALUE FROM 500 TO 65,000"
     let PV = parseInt($("#loanAmt").val());
     // console.log("listening to loan amount:", PV);
 
-
     // grab credit score from entry
-    // STILL NEED IF NO SCORE RANGE IS SELECTED DISPLAY LINE
-    // "PLEASE SELECT YOUR SCORE RANGE"
     let tier = "";
     $("#score option:selected").each(function () {
         tier += $(this).val();
         // console.log("listening to loan term:" + tier);
     });
 
-    // STILL NEED TO SERVE ACTUAL INTEREST
     // grab loans type of x, term length of term, interest rate of credit score tier
     $.ajax("api/rates/", {
         type: "GET",
@@ -52,8 +51,6 @@ function calculate() {
         let newRates = data.loans.New;
         // console.log("newRates ", newRates)
 
-        // this is supposed to be grabbing the selected term
-        // but it's gabbing before the selection happens
         let newFilter = { "term": `${n}` };
         // console.log("newFilter ", newFilter)
 
@@ -61,16 +58,11 @@ function calculate() {
         let newObj = _.filter(newRates, newFilter);
         // console.log("New Array ", newObj);
 
-
         // translate this to "interest"
         let newInterest = newObj[0].rate[`${tier}`];
         // console.log("newInterest ", newInterest)
         return newInterest;
 
-        // repeat the same for used
-
-        // but how do we pass on to the outside? having async hell
-        // everything else runs before this does :(
     }).then(function (newInterest) {
         // magical math moment
         let i = newInterest / 100 / 12;
@@ -83,16 +75,7 @@ function calculate() {
             console.log("$", monthly_payment)
             $("#monthlyPayment").text("$" + monthly_payment);
         }
-
-    })
-
-
-
-    // STILL NEED TO SET UP
-    // if all selections have been made with acceptable information
-    // dynamically display the estimated payment below the selections
-    // display monthly_payment 
-
+    });
 }
 
 // on page load, listen for any form changes
