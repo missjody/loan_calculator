@@ -18,6 +18,7 @@ Display the following drop-downs which rely on eachother
 Once all of these items are selected, a rate is auto-filled, and the calculation based on amount desired is specified
 
 8/23: TODOS:
+
     * STILL NEED IF NO CAR IS SELECTED DISPLAY LINE
      "PLEASE SELECT NEW OR USED"
 
