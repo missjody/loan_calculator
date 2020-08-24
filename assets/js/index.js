@@ -50,42 +50,49 @@ function calculate() {
 
         //drill down for new rates only
         let newRates = data.loans.New;
-        console.log("newRates ", newRates)
+        // console.log("newRates ", newRates)
 
         // this is supposed to be grabbing the selected term
         // but it's gabbing before the selection happens
         let newFilter = { "term": `${n}` };
-        console.log("newFilter ", newFilter)
+        // console.log("newFilter ", newFilter)
 
         // filter down to grab the rates that go with the term selected
         let newObj = _.filter(newRates, newFilter);
-        console.log("New Array ", newObj);
+        // console.log("New Array ", newObj);
 
 
         // translate this to "interest"
         let newInterest = newObj[0].rate[`${tier}`];
-        console.log("newInterest ", newInterest)
+        // console.log("newInterest ", newInterest)
+        return newInterest;
 
         // repeat the same for used
 
         // but how do we pass on to the outside? having async hell
         // everything else runs before this does :(
-    });
+    }).then(function (newInterest) {
+        // magical math moment
+        let i = newInterest / 100 / 12;
+        let prep = (1 + i);
+        let power_move = Math.pow(prep, n);
+        let monthly_prep = (PV * i * power_move) / (power_move - 1);
+        let monthly_payment = monthly_prep.toFixed(2);
+
+        if (monthly_payment != NaN) {
+            console.log("$", monthly_payment)
+            $("#monthlyPayment").text("$" + monthly_payment);
+        }
+
+    })
 
 
-    // magical math moment
-    // let i = interest / 100 / 12;
-    // let prep = (1 + i);
-    // let power_move = Math.pow(prep, n);
-    // let monthly_prep = (PV * i * power_move) / (power_move - 1);
-    // let monthly_payment = monthly_prep.toFixed(2);
 
     // STILL NEED TO SET UP
     // if all selections have been made with acceptable information
     // dynamically display the estimated payment below the selections
     // display monthly_payment 
 
-    // $("#monthlyPayent").text(monthly_payment);
 }
 
 // on page load, listen for any form changes
