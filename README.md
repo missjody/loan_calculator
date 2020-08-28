@@ -1,7 +1,7 @@
 # Loan Calculator 
 *building a loan calculator in incremental steps*
 
-~~Link to most up to date version of Loan Calculator [here](https://missjody.github.io/loan_calculator/)~~
+Link to most up to date version of Loan Calculator [here](https://loan-calculator-project.herokuapp.com/)
 
 ## Version 4
 
