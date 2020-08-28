@@ -9,30 +9,15 @@ Link to most up to date version of Loan Calculator [here](https://missjody.githu
 
 *new requirements*
 
-Display the following drop-downs which rely on eachother
+✔ Display the following drop-downs which rely on eachother
   * Loan Product – in this case, there is only one product in the data, Auto
   * Loan SubType – in this case, Auto has a “Year”, New & Used
   * Loan Amount - Hard-Code minAmount as 500, maxAmount as 65000
   * Credit Score
   
-Once all of these items are selected, a rate is auto-filled, and the calculation based on amount desired is specified
+✔ Once all of these items are selected, a rate is auto-filled, and the calculation based on amount desired is specified.
 
-8/23: TODOS:
-    // STILL NEED IF NO CAR IS SELECTED DISPLAY LINE
-    // "PLEASE SELECT NEW OR USED"
-
-    // STILL NEED IF NO TERM IS SELECTED DISPLAY LINE
-    // "PLEASE SELECT TERM"
-
-    // STILL NEED IF NO AMOUNT IS ENTERED DISPLAY LINE
-    // OR IF AMOUNT DOES NOT FALL BETWEEN 499 AND 65001
-    // "PLEASE ENTER A VALUE FROM 500 TO 65,000"
-
-    // STILL NEED IF NO SCORE RANGE IS SELECTED DISPLAY LINE
-    // "PLEASE SELECT YOUR SCORE RANGE"
-
-    // STILL NEED TO GRAB RATE BASED ON IF NEW OR USED AUTO
-    // IS SELECTED - RIGHT NOW ONLY CALCULATING BASED ON NEW 
+After the user selects New or Used Auto, Term, and Credit Score, as well as types in desired loan amount, the calculator automatically generates an estimated monthly payment and displays it on the page. This payment is determined by drawing the associated interest rate based on the entries provide from the API call to a json object. If the user does not type in a loan amount between $500 and $65,000 the application instead will display a request to enter an amount according to the parameters. 
 
 ## Version 3.2
 

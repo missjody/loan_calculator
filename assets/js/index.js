@@ -1,11 +1,5 @@
 function calculate() {
 
-    // STILL NEED IF NO CAR IS SELECTED DISPLAY LINE
-    // "PLEASE SELECT NEW OR USED"
-
-    // STILL NEED IF NO TERM IS SELECTED DISPLAY LINE
-    // "PLEASE SELECT TERM"
-
     // STILL NEED IF NO AMOUNT IS ENTERED DISPLAY LINE
     // OR IF AMOUNT DOES NOT FALL BETWEEN 499 AND 65001
     // "PLEASE ENTER A VALUE FROM 500 TO 65,000"
@@ -30,7 +24,13 @@ function calculate() {
     });
 
     // grab loan amt from entry
-    let PV = parseInt($("#loanAmt").val());
+    // let PV = parseInt($("#loanAmt").val());
+    let PV;
+    let loanAmt = parseInt($("#loanAmt").val());
+
+    if (loanAmt > 499 && loanAmt < 65001) {
+        PV = loanAmt;
+    }
     // console.log("listening to loan amount:", PV);
 
     // grab credit score from entry
@@ -48,7 +48,14 @@ function calculate() {
     }).then(function (data) {
 
         //drill down for new rates only
-        let newRates = data.loans.New;
+        let newRates;
+
+        if (`${auto}` == "New") {
+            newRates = data.loans.New;
+        } else {
+            newRates = data.loans.Used;
+        }
+        //  = data.loans.`${auto}`;
         // console.log("newRates ", newRates)
 
         let newFilter = { "term": `${n}` };
@@ -71,10 +78,18 @@ function calculate() {
         let monthly_prep = (PV * i * power_move) / (power_move - 1);
         let monthly_payment = monthly_prep.toFixed(2);
 
-        if (monthly_payment != NaN) {
+        // ISSUE /////
+        // cant get it to not display NaN for monthly_payment once term is selected
+        //////////////
+
+        console.log("PV before test ", PV)
+        if (isNaN(PV)) {
+            $("#monthlyPayment").text("Enter a value between $500 and $65,000 please.")
+        } else {
             console.log("$", monthly_payment)
             $("#monthlyPayment").text("$" + monthly_payment);
         }
+
     });
 }
 
