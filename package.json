@@ -1,15 +1,15 @@
 {
-  "name": "loan_calculator",
-  "version": "1.0.0",
-  "description": "application that allows you to calculate your estimated monthly loan payment based on information provided",
-  "main": "app.js",
+  "name": "loan-calculator",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "node app.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
-  "author": "miss jody",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
-    "mysql": "^2.16.0"
+    "next": "9.5.3",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   }
 }
