@@ -1,7 +1,29 @@
 # Loan Calculator 
 *building a loan calculator in incremental steps*
 
-Link to most up to date version of Loan Calculator [here](https://loan-calculator-project.herokuapp.com/)
+~~Link to most up to date version of Loan Calculator [here](https://loan-calculator-project.herokuapp.com/)~~
+
+## Version 5
+
+goals
+✔ update to react app
+* change form into a seperate reusable component
+  * feed questions into this component
+* seperate component for doing the math 
+  * pass values as props
+* set up server
+  * serve questions 
+  * serve rates
+* update css
+
+stretch goals: 
+* add additional loan types 
+  * each with different math compenents  
+* capture user contact info before displaying the payment info
+  * give nice little disclaimer in the model
+  * hitting cancel backs out to the beginning, clearing entries
+  * write email and entry and results to a doc
+
 
 ## Version 4
 

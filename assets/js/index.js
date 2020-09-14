@@ -1,15 +1,5 @@
 function calculate() {
 
-    // STILL NEED IF NO AMOUNT IS ENTERED DISPLAY LINE
-    // OR IF AMOUNT DOES NOT FALL BETWEEN 499 AND 65001
-    // "PLEASE ENTER A VALUE FROM 500 TO 65,000"
-
-    // STILL NEED IF NO SCORE RANGE IS SELECTED DISPLAY LINE
-    // "PLEASE SELECT YOUR SCORE RANGE"
-
-    // STILL NEED TO GRAB RATE BASED ON IF NEW OR USED AUTO
-    // IS SELECTED - RIGHT NOW ONLY CALCULATING BASED ON NEW 
-
     let auto = "";
     $("#loanProduct option:selected").each(function () {
         auto += $(this).val();

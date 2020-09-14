@@ -3,7 +3,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 //allows to do className={styles.classname}
 
-import Link from 'next/link'
+// import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -16,41 +16,48 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>
           {/* loan calculator title*/}
+          Loan Payment Calculator
         </h1>
 
         <p className={styles.description}>
           {/* loan calculator intro */}
+          <h5>Calculate your estimated monthly loan payment by entering the loan information below.</h5>
         </p>
 
-        <div className={styles.grid}>
-          {/* <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+        {/* form */}
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+        <form>
+          <select className="custom-select" id="loanProduct">
+            <option selected>Choose your loan product</option>
+            <option value="New">New Auto (2017 & newer)</option>
+            <option value="Used">Used Auto (2010 - 2016)</option>
+          </select>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+          <select className="custom-select" id="loanTerm">
+            <option selected>Choose your loan term</option>
+            <option value="60">60 months</option>
+            <option value="72">72 months</option>
+            <option value="84">84 months</option>
+          </select>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a> */}
+          <select className="custom-select" id="score">
+            <option selected>Do you know your credit score</option>
+            <option value="APlus">Excellent (740 & above)</option>
+            <option value="A">Great (690-739)</option>
+            <option value="B">Good (660-689)</option>
+            <option value="C">Fair (620-659)</option>
+            <option value="D">Ok (619 & Below)</option>
+          </select>
+
+          <input type="number" className="form-control" id="loanAmt"
+            placeholder="Enter desired loan amount from $500 to $65,000">
+          </input>
+        </form>
+
+        <div>
+          <h5 id="monthlyPayment"></h5>
         </div>
+
       </main>
 
       <footer className={styles.footer}>
