@@ -5,7 +5,6 @@
 
 ## Version 5
 
-goals
 ✔ update to react app
 * change form into a seperate reusable component
   * feed questions into this component
@@ -17,6 +16,7 @@ goals
 * update css
 
 stretch goals: 
+
 * add additional loan types 
   * each with different math compenents  
 * capture user contact info before displaying the payment info
