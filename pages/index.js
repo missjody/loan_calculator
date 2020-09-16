@@ -9,6 +9,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
+        <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css" />
         <title>Loan Payment Calculator</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
