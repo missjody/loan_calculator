@@ -20,23 +20,26 @@ const dev = process.env.NODE_ENV !== "production"
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-app.prepare().then(() => {
-  const server = express()
-  server.get("/", (req, res) => {
-    const home = "/"
-    app.render(req, res, home)
+app.prepare()
+  .then(() => {
+
+    // initiate express
+    const server = express()
+
+    // wildcard route to catch all routes, passed to getRequestHandler()
+    server.get("*", (req, res) => {
+      return handle(req, res)
+    })
+
+    server.listen(3000, (err) => {
+      if (err) throw err
+      console.log("server ready, running on http://localhost:3000 ~(o v o.)~ ")
+    })
+
+  }).catch((ex) => {
+    console.error(ex.stack)
+    process.exit(1)
   })
-  server.get("*", (req, res) => {
-    return handle(req, res)
-  })
-  server.listen(3000, (err) => {
-    if (err) throw err
-    console.log("server ready, running on http://localhost:3000 ~(o v o.)~ ")
-  })
-}).catch((ex) => {
-  console.error(ex.stack)
-  process.exit(1)
-})
 
 // is this still how the rest of this needs to be sat up? 
 // let data = JSON.parse(fs.readFileSync("./api/rates.json", "utf8"));
@@ -54,6 +57,7 @@ app.prepare().then(() => {
 // app.get("/", function (req, res) {
 //   res.sendFile(path.join(__dirname, "index.html"));
 // });
+
 
 
 // app.get("/api/rates", function (req, res) {

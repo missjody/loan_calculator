@@ -1,19 +1,17 @@
 import Head from 'next/head'
+import FormLayout from '../components/formLayout'
+// import utilStyles from '../styles/utils.module.css'
+import styles from '../components/formLayout.module.css'
 
-//allows to do className={styles.classname}
-import styles from '../styles/Home.module.css'
+export default function Home() {
+  return (
+    <FormLayout>
+      <Head>
+        <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css" />
+        <title>Loan Payment Calculator</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-// import Link from 'next/link'
-
-const Index = () => {
-  <div className={styles.container}>
-    <Head>
-      <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css" />
-      <title>Loan Payment Calculator</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-
-    <main className={styles.main}>
       <h1 className={styles.title}>
         {/* loan calculator title*/}
           Loan Payment Calculator
@@ -57,20 +55,6 @@ const Index = () => {
       <div>
         <h5 id="monthlyPayment"></h5>
       </div>
-
-    </main>
-
-    <footer className={styles.footer}>
-      {/* <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a> */}
-    </footer>
-  </div>
+    </FormLayout>
+  )
 }
-
-export default Index;
