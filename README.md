@@ -6,6 +6,7 @@
 ## Version 5
 
 ✔ update to react app
+* add instructions on how to run program on local machine until we have working prototype deployed
 * change form into a seperate reusable component
   * feed questions into this component
 * seperate component for doing the math 
