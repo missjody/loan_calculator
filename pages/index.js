@@ -3,7 +3,7 @@ import FormLayout from '../components/formLayout'
 // import utilStyles from '../styles/utils.module.css'
 import styles from '../components/formLayout.module.css'
 
-export default function Home() {
+export default function Home(props) {
   return (
     <FormLayout>
       <Head>
@@ -58,3 +58,22 @@ export default function Home() {
     </FormLayout>
   )
 }
+
+// my theory is that we would want it to load server side because we 
+// want the user to always have the most up to date rates, forcing
+// the page to pull the api each time so we're never caching out of
+// date rates on client side
+
+// this gets called on every request, so it needs to end up wherever 
+// we are listening to the entries for these values in the form
+// export async function getServerSideProps(context) {
+
+// fetch data from API
+// const res = await fetch(`however we need to link to api, i forget`)
+// const data = await res.json()
+
+// pass it back to the page as props
+//   return {
+//     props: { data},
+//   }
+// }

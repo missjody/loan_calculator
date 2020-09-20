@@ -1,4 +1,4 @@
-import Head from 'next/head'
+// import Head from 'next/head'
 //allows to do className={styles.classname}
 import styles from '../components/formLayout.module.css'
 // import Link from 'next/link'
