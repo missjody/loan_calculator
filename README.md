@@ -15,6 +15,7 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ update to react app
 ✔ add instructions on how to run program on local machine until we have working prototype deployed
+* fix imports after shifting components folder around
 * seperate component for doing the math 
   * pass values as props
 * set up server
@@ -32,6 +33,11 @@ stretch goals:
   * hitting cancel backs out to the beginning, clearing entries
   * write email and entry and results to a doc
 
+notes:
+
+* we want to use `getServerSideProps` so that we are rendering server side each time a new request goes through.
+* fetch for external apis, internal uses async
+* this request will be on the page itself
 
 ## Version 4
 

@@ -1,4 +1,35 @@
-// function calculate() {
+import React, { useState } from "react"
+
+// need to pass over props for the calculator to use -- check syntax for that
+function AutoCalculator({ rates }) {
+
+    // what we'll be grabbing from the entries of the user
+    const [userEntry, setUserEntry] = useState({
+        loanAmount: "",
+        scoreRange: "",
+        term: "",
+    })
+
+    // what we'll be displaying on the screen
+    const [results, setResults] = useState({
+        monthlyPayment: "",
+        // isResult: false, <-- might use something like this to control the display of the payment so that it won't give a NaN result
+    })
+
+    // do we pull the api here? 
+    // this gets called on every request
+    export async function getServerSideProps() {
+        const response = await fetch("http://localhost:3000/api/rates")
+        const rates = await response.json()
+        //passes to page via props
+        return { props: { rates } }
+    }
+    // listen for the changes event on page
+    // set up error catch
+    // do the math
+    // set up ability to clear information and start over
+    // return form from here
+
 
 //     let auto = "";
 //     $("#loanProduct option:selected").each(function () {
