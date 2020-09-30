@@ -10,10 +10,15 @@ function AutoCalculator({ rates }) {
         term: "",
     })
 
+    // so we can set the interest rate
+    const [userRate, setUserRate] = useState({
+        interest: "",
+    })
+
     // what we'll be displaying on the screen
     const [results, setResults] = useState({
         monthlyPayment: "",
-        // isResult: false, <-- might use something like this to control the display of the payment so that it won't give a NaN result
+        isResult: false
     })
 
     // do we pull the api here? 
@@ -24,11 +29,90 @@ function AutoCalculator({ rates }) {
         //passes to page via props
         return { props: { rates } }
     }
+
     // listen for the changes event on page
+    // this will grab any userEntry and based on what name the target has,
+    // updates the state value to match
+    const handleInputChange = (event) =>
+        setUserEntry({ ...userEntry, [event.target.name]: event.target.value })
+
     // set up error catch
-    // do the math
-    // set up ability to clear information and start over
-    // return form from here
+    const [error, setError] = useState("")
+
+    // this sets an error but how do we want it display onto the screen
+    const isValid = () => {
+        const { loanAmount, term } = userEntry;
+        let actualError = "";
+        // confirm there are values entered
+        if (!loanAmount || !term) {
+            actualError = "All the values are required";
+        }
+        // Validade if the values are numbers
+        if (isNaN(loanAmount) || isNaN(term)) {
+            actualError = "All the values must be a valid number";
+        }
+        // Validade if the values are positive numbers
+        if (Number(loanAmount) <= 0 || Number(term) <= 0) {
+            actualError = "All the values must be a positive number";
+        }
+        if (actualError) {
+            setError(actualError);
+            return false;
+        }
+        return true;
+    };
+
+    // convert scoreRange entry into interest rate based on api information
+    // and set it to state value
+
+    const handleSubmitValues = (event) => {
+        event.preventDefault();
+        if (isValid()) {
+            setError("");
+            calculate(userValues);
+        }
+    };
+
+    // Calculation
+    // set up results to the state to be displayed to the user
+    const calculate = ({ amount, interest, years }) => {
+        const userAmount = Number(amount);
+        const i = Number(interest) / 100 / 12;
+        let prep = (1 + i)
+        const months = Number(years) * 12;
+        const power_move = Math.pow(prep, months);
+        const monthly_prep = (userAmount * x * i) / (x - 1);
+        const monthly_payment = monthly_prep.toFixed(2);
+
+        setResults({
+            monthlyPayment: monthly_payment,
+            isResult: true,
+        });
+    }
+    return;
+};
+
+// Clear input fields
+const clearFields = () => {
+    setUserValues({
+        amount: "",
+        interest: "",
+        years: "",
+    });
+
+    setResults({
+        monthlyPayment: "",
+        totalPayment: "",
+        totalInterest: "",
+        isResult: false,
+    });
+};
+
+
+// do the math
+
+// set up ability to clear information and start over
+// return form from here
 
 
 //     let auto = "";
@@ -122,3 +206,5 @@ function AutoCalculator({ rates }) {
 //     $("form").keyup(calculate);
 
 // });
+
+export default AutoCalculator()
