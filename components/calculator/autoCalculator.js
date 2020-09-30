@@ -33,8 +33,7 @@ function AutoCalculator({ rates }) {
     // listen for the changes event on page
     // this will grab any userEntry and based on what name the target has,
     // updates the state value to match
-    const handleInputChange = (event) =>
-        setUserEntry({ ...userEntry, [event.target.name]: event.target.value })
+    const handleInputChange = (event) => setUserEntry({ ...userEntry, [event.target.name]: event.target.value })
 
     // set up error catch
     const [error, setError] = useState("")
@@ -73,13 +72,14 @@ function AutoCalculator({ rates }) {
         }
     };
 
+    // do the math
     // Calculation
     // set up results to the state to be displayed to the user
-    const calculate = ({ amount, interest, years }) => {
+    const calculate = ({ amount, interest, term }) => {
         const userAmount = Number(amount);
         const i = Number(interest) / 100 / 12;
         let prep = (1 + i)
-        const months = Number(years) * 12;
+        const months = Number(term) * 12;
         const power_move = Math.pow(prep, months);
         const monthly_prep = (userAmount * x * i) / (x - 1);
         const monthly_payment = monthly_prep.toFixed(2);
@@ -88,31 +88,36 @@ function AutoCalculator({ rates }) {
             monthlyPayment: monthly_payment,
             isResult: true,
         });
+
+        return;
     }
-    return;
-};
 
-// Clear input fields
-const clearFields = () => {
-    setUserValues({
-        amount: "",
-        interest: "",
-        years: "",
-    });
+    // set up ability to clear information and start over
+    // Clear input fields
+    const clearFields = () => {
+        setUserValues({
+            amount: "",
+            scoreRange: "",
+            term: "",
+        });
 
-    setResults({
-        monthlyPayment: "",
-        totalPayment: "",
-        totalInterest: "",
-        isResult: false,
-    });
-};
+        setResults({
+            monthlyPayment: "",
+            isResult: false,
+        });
+    };
+
+    // return form from here
+    return (
+        <div>
+            form stuff here
+        </div>
+    )
+}
+
+export default AutoCalculator()
 
 
-// do the math
-
-// set up ability to clear information and start over
-// return form from here
 
 
 //     let auto = "";
@@ -207,4 +212,3 @@ const clearFields = () => {
 
 // });
 
-export default AutoCalculator()

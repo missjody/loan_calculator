@@ -8,19 +8,22 @@
 *instructions for running on local machine*
 
 This application is not currently deployed. To test on your local machine:
-> git clone https://github.com/missjody/loan_calculator.git
-> npm i for dependencies 
-> npm run dev
-> access localhost:3000
+* git clone https://github.com/missjody/loan_calculator.git
+* npm i for dependencies 
+* npm run dev
+* access localhost:3000
 
 ✔ update to react app
+
 ✔ add instructions on how to run program on local machine until we have working prototype deployed
+
+* make sure form asks for term in years rather than months to make for an easier user experience
 * fix imports after shifting components folder around
 * seperate component for doing the math 
   * pass values as props
 * set up server
   * serve rates
-* update css
+* update css to make it a little box
 
 stretch goals: 
 
@@ -36,8 +39,6 @@ stretch goals:
 notes:
 
 * we want to use `getServerSideProps` so that we are rendering server side each time a new request goes through.
-* fetch for external apis, internal uses async
-* this request will be on the page itself
 
 ## Version 4
 
