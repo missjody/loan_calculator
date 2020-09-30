@@ -12,9 +12,11 @@ const next = require("next");
 // set up from next js tutorial, break down each steps as homework
 // to confirm you know what is happening here
 
-// What happens in the code above? We require both Express and Next libraries. We create an instance of the Next library passing in a Boolean based on the environment which detects whether to launch Next.js in dev mode or not.
+// What happens in the code above? We require both Express and Next libraries. We create an instance of the Next library passing in a Boolean based on the environment 
+// which detects whether to launch Next.js in dev mode or not.
 
-// We move ahead to call the getRequestHandler() function, then finally we prepare the app. The prepare function returns a promise, so we can do a .then pipe to it. In the .then call, we initiate Express, and we use a wildcard route to catch all routes and return it to the handler function.
+// We move ahead to call the getRequestHandler() function, then finally we prepare the app. The prepare function returns a promise, so we can do a 
+// .then pipe to it. In the .then call, we initiate Express, and we use a wildcard route to catch all routes and return it to the handler function.
 
 const dev = process.env.NODE_ENV !== "production"
 const app = next({ dev })

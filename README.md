@@ -5,19 +5,26 @@
 
 ## Version 5
 
+*instructions for running on local machine*
+
+This application is not currently deployed. To test on your local machine:
+> git clone https://github.com/missjody/loan_calculator.git
+> npm i for dependencies 
+> npm run dev
+> access localhost:3000
+
 ✔ update to react app
-* add instructions on how to run program on local machine until we have working prototype deployed
-* change form into a seperate reusable component
-  * feed questions into this component
+✔ add instructions on how to run program on local machine until we have working prototype deployed
 * seperate component for doing the math 
   * pass values as props
 * set up server
-  * serve questions 
   * serve rates
 * update css
 
 stretch goals: 
 
+* change form into a seperate reusable component
+  * feed questions into this component
 * add additional loan types 
   * each with different math compenents  
 * capture user contact info before displaying the payment info
