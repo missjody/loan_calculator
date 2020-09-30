@@ -9,7 +9,7 @@
 
 This application is not currently deployed. To test on your local machine:
 * git clone https://github.com/missjody/loan_calculator.git
-* npm i for dependencies 
+* npm i 
 * npm run dev
 * access localhost:3000
 
