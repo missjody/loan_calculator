@@ -17,17 +17,28 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ add instructions on how to run program on local machine until we have working prototype deployed
 
-* finish working with next documentation for setup with express server
-* make sure form asks for term in years rather than months to make for an easier user experience
-* fix imports after shifting components folder around
-* seperate component for doing the math 
-  * pass values as props
-* set up server
-  * serve rates
+✔ finish working with next documentation for setup with express server
+
+✔ fix imports after shifting components folder around
+
+✔ seperate component for doing the math 
+
+  ✔ pass values as props
+
+✔ set up server
+  ✔ serve rates
+
+* contain calculator in a bordered box similar to how work's team did it
+* Change loan selector into a sliding selector
+* update form to match Next requirement
+* grab values from the form and pass to calculator
+* display estimate, button to start completely over
+* does it still work/update if it's not completely refreshed? 
 * update css to make it a little box
 
 stretch goals: 
 
+* write a test or three
 * change form into a seperate reusable component
   * feed questions into this component
 * add additional loan types 
@@ -36,11 +47,6 @@ stretch goals:
   * give nice little disclaimer in the model
   * hitting cancel backs out to the beginning, clearing entries
   * write email and entry and results to a doc
-* write a test or three
-
-notes:
-
-* we want to use `getServerSideProps` so that we are rendering server side each time a new request goes through.
 
 ## Version 4
 
