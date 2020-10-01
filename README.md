@@ -17,6 +17,7 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ add instructions on how to run program on local machine until we have working prototype deployed
 
+* finish working with next documentation for setup with express server
 * make sure form asks for term in years rather than months to make for an easier user experience
 * fix imports after shifting components folder around
 * seperate component for doing the math 
@@ -35,6 +36,7 @@ stretch goals:
   * give nice little disclaimer in the model
   * hitting cancel backs out to the beginning, clearing entries
   * write email and entry and results to a doc
+* write a test or three
 
 notes:
 

@@ -1,214 +1,200 @@
-import React, { useState } from "react"
+import React from "react" // , { useState }
+import FormLayout from "./formLayout.js"
+import Head from 'next/head'
+
+
+
+// do we pull the api here? 
+// this gets called on every request
+// export async function getServerSideProps() {
+//     const response = await fetch("http://localhost:3000/api/rates")
+//     const rates = await response.json()
+//     //passes to page via props
+//     return { props: { rates } }
+// }
 
 // need to pass over props for the calculator to use -- check syntax for that
-function AutoCalculator({ rates }) {
+function AutoCalculator() {
 
-    // what we'll be grabbing from the entries of the user
-    const [userEntry, setUserEntry] = useState({
-        loanAmount: "",
-        scoreRange: "",
-        term: "",
-    })
+    // // what we'll be grabbing from the entries of the user
+    // const [userEntry, setUserEntry] = useState({
+    //     loanAmount: "",
+    //     scoreRange: "",
+    //     term: "",
+    // })
 
-    // so we can set the interest rate
-    const [userRate, setUserRate] = useState({
-        interest: "",
-    })
+    // // so we can set the interest rate
+    // const [userRate, setUserRate] = useState({
+    //     interest: "",
+    // })
 
-    // what we'll be displaying on the screen
-    const [results, setResults] = useState({
-        monthlyPayment: "",
-        isResult: false
-    })
+    // // what we'll be displaying on the screen
+    // const [results, setResults] = useState({
+    //     monthlyPayment: "",
+    //     isResult: false
+    // })
 
-    // do we pull the api here? 
-    // this gets called on every request
-    export async function getServerSideProps() {
-        const response = await fetch("http://localhost:3000/api/rates")
-        const rates = await response.json()
-        //passes to page via props
-        return { props: { rates } }
-    }
+    // // // do we pull the api here? 
+    // // // this gets called on every request
+    // // export async function getServerSideProps() {
+    // //     const response = await fetch("http://localhost:3000/api/rates")
+    // //     const rates = await response.json()
+    // //     //passes to page via props
+    // //     return { props: { rates } }
+    // // }
 
-    // listen for the changes event on page
-    // this will grab any userEntry and based on what name the target has,
-    // updates the state value to match
-    const handleInputChange = (event) => setUserEntry({ ...userEntry, [event.target.name]: event.target.value })
+    // // listen for the changes event on page
+    // // this will grab any userEntry and based on what name the target has,
+    // // updates the state value to match
+    // const handleInputChange = (event) => setUserEntry({ ...userEntry, [event.target.name]: event.target.value })
 
-    // set up error catch
-    const [error, setError] = useState("")
+    // // set up error catch
+    // const [error, setError] = useState("")
 
-    // this sets an error but how do we want it display onto the screen
-    const isValid = () => {
-        const { loanAmount, term } = userEntry;
-        let actualError = "";
-        // confirm there are values entered
-        if (!loanAmount || !term) {
-            actualError = "All the values are required";
-        }
-        // Validade if the values are numbers
-        if (isNaN(loanAmount) || isNaN(term)) {
-            actualError = "All the values must be a valid number";
-        }
-        // Validade if the values are positive numbers
-        if (Number(loanAmount) <= 0 || Number(term) <= 0) {
-            actualError = "All the values must be a positive number";
-        }
-        if (actualError) {
-            setError(actualError);
-            return false;
-        }
-        return true;
-    };
+    // // this sets an error but how do we want it display onto the screen
+    // const isValid = () => {
+    //     const { loanAmount, term } = userEntry;
+    //     let actualError = "";
+    //     // confirm there are values entered
+    //     if (!loanAmount || !term) {
+    //         actualError = "All the values are required";
+    //     }
+    //     // Validade if the values are numbers
+    //     if (isNaN(loanAmount) || isNaN(term)) {
+    //         actualError = "All the values must be a valid number";
+    //     }
+    //     // Validade if the values are positive numbers
+    //     if (Number(loanAmount) <= 0 || Number(term) <= 0) {
+    //         actualError = "All the values must be a positive number";
+    //     }
+    //     if (actualError) {
+    //         setError(actualError);
+    //         return false;
+    //     }
+    //     return true;
+    // };
 
-    // convert scoreRange entry into interest rate based on api information
-    // and set it to state value
+    // // convert scoreRange entry into interest rate based on api information
+    // // and set it to state value
 
-    const handleSubmitValues = (event) => {
-        event.preventDefault();
-        if (isValid()) {
-            setError("");
-            calculate(userValues);
-        }
-    };
+    // const handleSubmitValues = (event) => {
+    //     event.preventDefault();
+    //     if (isValid()) {
+    //         setError("");
+    //         calculate(userValues);
+    //     }
+    // };
 
-    // do the math
-    // Calculation
-    // set up results to the state to be displayed to the user
-    const calculate = ({ amount, interest, term }) => {
-        const userAmount = Number(amount);
-        const i = Number(interest) / 100 / 12;
-        let prep = (1 + i)
-        const months = Number(term) * 12;
-        const power_move = Math.pow(prep, months);
-        const monthly_prep = (userAmount * x * i) / (x - 1);
-        const monthly_payment = monthly_prep.toFixed(2);
+    // // do the math
+    // // Calculation
+    // // set up results to the state to be displayed to the user
+    // const calculate = ({ amount, interest, term }) => {
+    //     const userAmount = Number(amount);
+    //     const i = Number(interest) / 100 / 12;
+    //     let prep = (1 + i)
+    //     const months = Number(term) * 12;
+    //     const power_move = Math.pow(prep, months);
+    //     const monthly_prep = (userAmount * x * i) / (x - 1);
+    //     const monthly_payment = monthly_prep.toFixed(2);
 
-        setResults({
-            monthlyPayment: monthly_payment,
-            isResult: true,
-        });
+    //     setResults({
+    //         monthlyPayment: monthly_payment,
+    //         isResult: true,
+    //     });
 
-        return;
-    }
+    //     return;
+    // }
 
-    // set up ability to clear information and start over
-    // Clear input fields
-    const clearFields = () => {
-        setUserValues({
-            amount: "",
-            scoreRange: "",
-            term: "",
-        });
+    // // set up ability to clear information and start over
+    // // Clear input fields
+    // const clearFields = () => {
+    //     setUserValues({
+    //         amount: "",
+    //         scoreRange: "",
+    //         term: "",
+    //     });
 
-        setResults({
-            monthlyPayment: "",
-            isResult: false,
-        });
-    };
+    //     setResults({
+    //         monthlyPayment: "",
+    //         isResult: false,
+    //     });
+    // };
 
     // return form from here
     return (
-        <div>
-            form stuff here
-        </div>
+        <FormLayout>
+            <Head>
+                <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css" />
+                <title>Auto Loan Payment Calculator</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+
+            {/* <h1 className={styles.title}>
+                Loan Payment Calculator
+            </h1> */}
+
+            {/* <p className={styles.description}> */}
+            {/* loan calculator intro */}
+            <h5>Calculate your estimated monthly loan payment by entering the loan information below.</h5>
+            {/* </p> */}
+
+            {/* <p className="error">{error}</p> */}
+
+            {/* form */}
+            <form >
+                {/* onChange={handleSubmitValues} */}
+                {/* do a truthy, if there is not a result yet only display the questions, if there is a result also show the result box and refresh button 
+                so basically double up these options once we figure out if they can stay selects or inputs */}
+                {/* change these to inputs? do I remember how this is done in React, or rather in Next */}
+                <select className="custom-select" id="loanProduct">
+                    <option selected>Choose your loan product</option>
+                    <option value="New">New Auto (2017 & newer)</option>
+                    <option value="Used">Used Auto (2010 - 2016)</option>
+                </select>
+
+                <select className="custom-select" id="loanTerm">
+                    <option selected>Choose your loan term</option>
+                    <option value="60">60 months</option>
+                    <option value="72">72 months</option>
+                    <option value="84">84 months</option>
+                </select>
+
+                <select className="custom-select" id="score">
+                    <option selected>Do you know your credit score</option>
+                    <option value="APlus">Excellent (740 & above)</option>
+                    <option value="A">Great (690-739)</option>
+                    <option value="B">Good (660-689)</option>
+                    <option value="C">Fair (620-659)</option>
+                    <option value="D">Ok (619 & Below)</option>
+                </select>
+
+                <input type="number" className="form-control" id="loanAmt"
+                    placeholder="Enter desired loan amount from $500 to $65,000">
+                </input>
+            </form>
+
+            <div>
+                <h5 id="monthlyPayment"></h5>
+            </div>
+            {/* 
+            <div>
+                <input
+                    className='button'
+                    value='Start Over'
+                    type='button'
+                    onClick={clearFields}
+                />
+            </div> */}
+
+        </FormLayout>
     )
 }
+
+
+
 
 export default AutoCalculator()
 
 
 
-
-//     let auto = "";
-//     $("#loanProduct option:selected").each(function () {
-//         auto += $(this).val();
-//         // console.log("listening to loan product:" + auto);
-//     });
-
-//     // grab term from entry
-//     let n = "";
-//     $("#loanTerm option:selected").each(function () {
-//         n += $(this).val();
-//         // console.log("listening to loan term:" + n);
-//     });
-
-//     // grab loan amt from entry
-//     // let PV = parseInt($("#loanAmt").val());
-//     let PV;
-//     let loanAmt = parseInt($("#loanAmt").val());
-
-//     if (loanAmt > 499 && loanAmt < 65001) {
-//         PV = loanAmt;
-//     }
-//     // console.log("listening to loan amount:", PV);
-
-//     // grab credit score from entry
-//     let tier = "";
-//     $("#score option:selected").each(function () {
-//         tier += $(this).val();
-//         // console.log("listening to loan term:" + tier);
-//     });
-
-//     // grab loans type of x, term length of term, interest rate of credit score tier
-//     $.ajax("api/rates/", {
-//         type: "GET",
-//         data: "data",
-//         dataType: "json"
-//     }).then(function (data) {
-
-//         //drill down for new rates only
-//         let newRates;
-
-//         if (`${auto}` == "New") {
-//             newRates = data.loans.New;
-//         } else {
-//             newRates = data.loans.Used;
-//         }
-//         //  = data.loans.`${auto}`;
-//         // console.log("newRates ", newRates)
-
-//         let newFilter = { "term": `${n}` };
-//         // console.log("newFilter ", newFilter)
-
-//         // filter down to grab the rates that go with the term selected
-//         let newObj = _.filter(newRates, newFilter);
-//         // console.log("New Array ", newObj);
-
-//         // translate this to "interest"
-//         let newInterest = newObj[0].rate[`${tier}`];
-//         // console.log("newInterest ", newInterest)
-//         return newInterest;
-
-//     }).then(function (newInterest) {
-//         // magical math moment
-//         let i = newInterest / 100 / 12;
-//         let prep = (1 + i);
-//         let power_move = Math.pow(prep, n);
-//         let monthly_prep = (PV * i * power_move) / (power_move - 1);
-//         let monthly_payment = monthly_prep.toFixed(2);
-
-//         // ISSUE /////
-//         // cant get it to not display NaN for monthly_payment once term is selected
-//         //////////////
-
-//         console.log("PV before test ", PV)
-//         if (isNaN(PV)) {
-//             $("#monthlyPayment").text("Enter a value between $500 and $65,000 please.")
-//         } else {
-//             console.log("$", monthly_payment)
-//             $("#monthlyPayment").text("$" + monthly_payment);
-//         }
-
-//     });
-// }
-
-// // on page load, listen for any form changes
-// // if changes are made, update calculation
-// $(function () {
-
-//     $("form").change(calculate);
-//     $("form").keyup(calculate);
-
-// });
 
