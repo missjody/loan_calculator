@@ -1,6 +1,4 @@
 import React, { useState } from "react"
-import FormLayout from "./formLayout.js"
-import Head from 'next/head'
 
 
 // need to pass over props for the calculator to use -- check syntax for that
@@ -9,6 +7,7 @@ function AutoCalculator({ rates }) {
 
     // // what we'll be grabbing from the entries of the user
     const [userEntry, setUserEntry] = useState({
+        loanType: "",
         loanAmount: "",
         scoreRange: "",
         term: "",
@@ -28,7 +27,17 @@ function AutoCalculator({ rates }) {
     // listen for the changes event on page
     // this will grab any userEntry and based on what name the target has,
     // updates the state value to match
-    const handleInputChange = (event) => setUserEntry({ ...userEntry, [event.target.name]: event.target.value })
+    const handleInputChange = (event) => {
+        setUserEntry({ ...userEntry, [event.target.name]: event.target.value })
+        if (isValid()) {
+            setError("");
+            // do we need to pass props to findRate()?
+            findRate()
+            // pass userRate to calculator as well as userEntry
+            calculate(userEntry);
+        }
+    };
+
 
     // set up error catch
     const [error, setError] = useState("")
@@ -56,16 +65,15 @@ function AutoCalculator({ rates }) {
         return true;
     };
 
+
     // // convert scoreRange entry into interest rate based on api information
     // // and set it to state value
-
-    const handleSubmitValues = (event) => {
-        event.preventDefault();
-        if (isValid()) {
-            setError("");
-            calculate(userValues);
-        }
-    };
+    const findRate = () => {
+        // map over data to find match to value of userEntry.loanType
+        // map over data to find match to value of userEntry.term
+        // map over that term's rates to match to value of userEntry.scoreRange
+        // setUserRate to the rate found
+    }
 
     // do the math
     // Calculation
@@ -76,7 +84,7 @@ function AutoCalculator({ rates }) {
         let prep = (1 + i)
         const months = Number(term) * 12;
         const power_move = Math.pow(prep, months);
-        const monthly_prep = (userAmount * x * i) / (x - 1);
+        const monthly_prep = (userAmount * power_move * i) / (power_move - 1);
         const monthly_payment = monthly_prep.toFixed(2);
 
         setResults({
@@ -90,7 +98,7 @@ function AutoCalculator({ rates }) {
     // set up ability to clear information and start over
     // Clear input fields
     const clearFields = () => {
-        setUserValues({
+        setUserEntry({
             amount: "",
             scoreRange: "",
             term: "",
@@ -104,35 +112,26 @@ function AutoCalculator({ rates }) {
 
     // return form from here
     return (
-        <FormLayout>
-            <Head>
-                <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css" />
-                <title>Auto Loan Payment Calculator</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+        <div>
 
-            {/* <h1 className={styles.title}>
+
+            <h1 >
                 Loan Payment Calculator
-            </h1> */}
+            </h1>
 
-            {/* <p className={styles.description}> */}
             {/* loan calculator intro */}
             <h5>Calculate your estimated monthly loan payment by entering the loan information below.</h5>
-            {/* </p> */}
 
-            {/* <p className="error">{error}</p> */}
+            <p className="error">{error}{userEntry.term}TEST</p>
 
-            {/* form */}
-            <form >
-                {/* onChange={handleSubmitValues} */}
-                {/* do a truthy, if there is not a result yet only display the questions, if there is a result also show the result box and refresh button 
-                so basically double up these options once we figure out if they can stay selects or inputs */}
-                {/* change these to inputs? do I remember how this is done in React, or rather in Next */}
-                <select className="custom-select" id="loanProduct">
+            <form>
+
+                <select className="custom-select" id="loanProduct" name="loanType" onChange={handleInputChange}>
                     <option selected>Choose your loan product</option>
                     <option value="New">New Auto (2017 & newer)</option>
                     <option value="Used">Used Auto (2010 - 2016)</option>
                 </select>
+
 
                 <select className="custom-select" id="loanTerm">
                     <option selected>Choose your loan term</option>
@@ -150,25 +149,31 @@ function AutoCalculator({ rates }) {
                     <option value="D">Ok (619 & Below)</option>
                 </select>
 
-                <input type="number" className="form-control" id="loanAmt"
+                {/* <p> I want to borrow ${userEntry.loanAmount}</p> */}
+                <input type="range" step={1} maxvalue={65000} minvalue={500} onChange={handleInputChange} />
+
+                {/* <input type="number" className="form-control" id="loanAmt"
                     placeholder="Enter desired loan amount from $500 to $65,000">
-                </input>
+                </input> */}
             </form>
+
 
             <div>
                 <h5 id="monthlyPayment"></h5>
             </div>
-            {/* 
+
             <div>
                 <input
-                    className='button'
-                    value='Start Over'
-                    type='button'
+                    className="button"
+                    value="Start Over"
+                    type="button"
                     onClick={clearFields}
                 />
-            </div> */}
+            </div>
 
-        </FormLayout>
+
+
+        </div>
     )
 
 }

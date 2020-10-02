@@ -5,6 +5,8 @@
 
 ## Version 5
 
+* updated to a react app with next.js framework and express.js server
+
 *instructions for running on local machine*
 
 This application is not currently deployed. To test on your local machine:
@@ -23,17 +25,20 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ seperate component for doing the math 
 
-  ✔ pass values as props
+✔ pass values as props
 
 ✔ set up server
-  ✔ serve rates
+
+✔ serve rates
+
+still todo: 
 
 * contain calculator in a bordered box similar to how work's team did it
 * Change loan selector into a sliding selector
 * update form to match Next requirement
 * grab values from the form and pass to calculator
 * display estimate, button to start completely over
-* does it still work/update if it's not completely refreshed? 
+* does it still work/update if it's not completely refreshed using button? 
 * update css to make it a little box
 
 stretch goals: 
