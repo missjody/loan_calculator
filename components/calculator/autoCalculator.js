@@ -81,7 +81,10 @@ function AutoCalculator({ rates }) {
         const userAmount = userEntry.loanAmount;
         const i = userRate / 100 / 12;
         let prep = (1 + i)
-        const months = userEntry.term * 12;
+        // months is already being brought in with the months due to a drop down with terms 
+        // so we do not need to multiply by 12 like we have here
+        // const months = userEntry.term * 12;
+        const months = userEntry.term
         const power_move = Math.pow(prep, months);
         const monthly_prep = (userAmount * power_move * i) / (power_move - 1);
         const monthly_payment = monthly_prep.toFixed(2);
