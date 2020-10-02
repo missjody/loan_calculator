@@ -43,20 +43,13 @@ function AutoCalculator({ rates }) {
     const [error, setError] = useState("")
 
     // this sets an error but how do we want it display onto the screen
+    // updated to check for all values on form
     const isValid = () => {
-        const { loanAmount, term } = userEntry;
+        const { loanType, loanAmount, scoreRange, term } = userEntry;
         let actualError = "";
         // confirm there are values entered
-        if (!loanAmount || !term) {
+        if (!loanAmount || !term || !loanType || !scoreRange) {
             actualError = "All the values are required";
-        }
-        // Validade if the values are numbers
-        if (isNaN(loanAmount) || isNaN(term)) {
-            actualError = "All the values must be a valid number";
-        }
-        // Validade if the values are positive numbers
-        if (Number(loanAmount) <= 0 || Number(term) <= 0) {
-            actualError = "All the values must be a positive number";
         }
         if (actualError) {
             setError(actualError);
