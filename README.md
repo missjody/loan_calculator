@@ -31,15 +31,26 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ serve rates
 
+✔ contain calculator in a bordered box
+
+✔ Change loan selector into a sliding selector
+
+✔ grab values from the form 
+
+✔ grabbing the rates
+
+✔ pass all values to calculator
+
+✔ display estimate
+
 still todo: 
 
-* contain calculator in a bordered box similar to how work's team did it
-* Change loan selector into a sliding selector
-* update form to match Next requirement
-* grab values from the form and pass to calculator
-* display estimate, button to start completely over
-* does it still work/update if it's not completely refreshed using button? 
-* update css to make it a little box
+* omg why is the math broken, is the form not refreshing correctly? time for some console logging
+* what is the purpose of _app.js again?
+* remove unneeded CSS 
+* set up css files according to documentation rather than having everything dumped into globals
+* why isn't importing styles working to be honest
+* deploy to next hosting
 
 stretch goals: 
 

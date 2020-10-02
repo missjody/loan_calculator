@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-
+import React, { useState } from "react";
+import _ from 'lodash';
 
 // need to pass over props for the calculator to use -- check syntax for that
 function AutoCalculator({ rates }) {
@@ -32,9 +32,9 @@ function AutoCalculator({ rates }) {
         if (isValid()) {
             setError("");
             // do we need to pass props to findRate()?
-            findRate()
+            findRate(userEntry, rates)
             // pass userRate to calculator as well as userEntry
-            calculate(userEntry);
+            calculate(userEntry, userRate);
         }
     };
 
@@ -68,52 +68,42 @@ function AutoCalculator({ rates }) {
 
     // // convert scoreRange entry into interest rate based on api information
     // // and set it to state value
-    const findRate = () => {
-        // map over data to find match to value of userEntry.loanType
-        // map over data to find match to value of userEntry.term
-        // map over that term's rates to match to value of userEntry.scoreRange
-        // setUserRate(to the rate found)
+    const findRate = (userEntry, rates) => {
+
+        let grabByType = rates.data.loans[userEntry.loanType];
+
+        let filter = { "term": userEntry.term };
+
+        // filter down to grab the rates that go with the term selected
+        let newObj = _.filter(grabByType, filter);
+
+        setUserRate(newObj[0].rate[userEntry.scoreRange])
     }
 
     // do the math
     // Calculation
     // set up results to the state to be displayed to the user
     // we'll be passing these values in differently cause it's userRate.interest and userEntry.loanAmount, userEntry.term
-    // const calculate = ({ amount, interest, term }) => {
-    //     const userAmount = Number(amount);
-    //     const i = Number(interest) / 100 / 12;
-    //     let prep = (1 + i)
-    //     const months = Number(term) * 12;
-    //     const power_move = Math.pow(prep, months);
-    //     const monthly_prep = (userAmount * power_move * i) / (power_move - 1);
-    //     const monthly_payment = monthly_prep.toFixed(2);
-
-    //     setResults({
-    //         monthlyPayment: monthly_payment,
-    //         isResult: true,
-    //     });
-
-    //     return;
-    // }
-
-    // set up ability to clear information and start over
-    // Clear input fields
-    const clearFields = () => {
-        setUserEntry({
-            amount: "",
-            scoreRange: "",
-            term: "",
-        });
+    const calculate = (userEntry, userRate) => {
+        const userAmount = userEntry.loanAmount;
+        const i = userRate / 100 / 12;
+        let prep = (1 + i)
+        const months = userEntry.term * 12;
+        const power_move = Math.pow(prep, months);
+        const monthly_prep = (userAmount * power_move * i) / (power_move - 1);
+        const monthly_payment = monthly_prep.toFixed(2);
 
         setResults({
-            monthlyPayment: "",
-            isResult: false,
+            monthlyPayment: monthly_payment,
+            isResult: true,
         });
-    };
+
+        return;
+    }
 
     // return form from here
     return (
-        <div>
+        <div className="container">
 
             <h1 >
                 Loan Payment Calculator
@@ -149,29 +139,15 @@ function AutoCalculator({ rates }) {
                     <option value="D">Ok (619 & Below)</option>
                 </select>
 
-                <p> I want to borrow ${userEntry.loanAmount}</p>
+                <p> You want to borrow ${userEntry.loanAmount}</p>
                 <input type="range" step={500} max={65000} min={500} name="loanAmount" onChange={handleInputChange} />
 
-                {/* <input type="number" className="form-control" id="loanAmt"
-                    placeholder="Enter desired loan amount from $500 to $65,000">
-                </input> */}
             </form>
 
 
             <div>
-                <h5 id="monthlyPayment"></h5>
+                <h5 id="monthlyPayment">Your estimated monthly payment is ${results.monthlyPayment}</h5>
             </div>
-
-            <div>
-                <input
-                    className="button"
-                    value="Start Over"
-                    type="button"
-                    onClick={clearFields}
-                />
-            </div>
-
-
 
         </div>
     )
