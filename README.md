@@ -47,7 +47,7 @@ still todo:
 
 * omg why is the math broken, is the form not refreshing correctly? time for some console logging
 * what is the purpose of _app.js again?
-* remove unneeded CSS 
+* react is yelling, doesn't want me to use selected on select, fix that
 * set up css files according to documentation rather than having everything dumped into globals
 * why isn't importing styles working to be honest
 * deploy to next hosting
