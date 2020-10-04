@@ -43,14 +43,14 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ display estimate
 
+✔ found calculation errors
+
 still todo: 
 
-* omg why is the math broken, is the form not refreshing correctly? time for some console logging
-* what is the purpose of _app.js again?
+* confirm calcuator fixes work 
 * react is yelling, doesn't want me to use selected on select, fix that
 * set up css files according to documentation rather than having everything dumped into globals
-* why isn't importing styles working to be honest
-* deploy to next hosting
+* deploy to Vercel hosting
 
 stretch goals: 
 
