@@ -24,6 +24,7 @@ This application is not currently deployed. To test on your local machine:
 ✔ serve rates
 
 still todo: 
+* determine why calculator is not grabbing ALL values on EVERY change of ANY value
 * resolve "defaultValue" warning in console
 * organize css according to Next js standards
 * deploy to Vercel hosting

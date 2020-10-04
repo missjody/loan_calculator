@@ -29,8 +29,8 @@ Index.getInitialProps = async function () {
     const response = await fetch("http://localhost:3000/api/rates");
     const data = await response.json();
 
-    console.log("Rendering... ")
-    console.log("Data: ", data.loans.New)
+    // console.log("Rendering... ")
+    // console.log("Data: ", data.loans.New)
     return {
         rates: { data }
     }

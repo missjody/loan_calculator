@@ -79,20 +79,20 @@ function AutoCalculator({ rates }) {
     // we'll be passing these values in differently cause it's userRate.interest and userEntry.loanAmount, userEntry.term
     const calculate = (userEntry, userRate) => {
         const userAmount = userEntry.loanAmount;
-        console.log("userAmount ", userAmount)
+        // console.log("userAmount ", userAmount)
         const i = userRate / 100 / 12;
-        console.log("i ", i)
+        // console.log("i ", i)
         let prep = (1 + i)
         // months is already being brought in with the months due to a drop down with terms 
         // so we do not need to multiply by 12 like we have here
         // const months = userEntry.term * 12;
         const months = userEntry.term
         const power_move = Math.pow(prep, months);
-        console.log("power_move", power_move)
+        // console.log("power_move", power_move)
         const monthly_prep = (userAmount * power_move * i) / (power_move - 1);
-        console.log("monthly_prep ", monthly_prep)
+        // console.log("monthly_prep ", monthly_prep)
         const monthly_payment = monthly_prep.toFixed(2);
-        console.log("monthly_payment ", monthly_payment)
+        // console.log("monthly_payment ", monthly_payment)
 
         setResults({
             monthlyPayment: monthly_payment,
