@@ -17,39 +17,15 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ update to react app
 
-✔ add instructions on how to run program on local machine until we have working prototype deployed
-
-✔ finish working with next documentation for setup with express server
-
-✔ fix imports after shifting components folder around
-
 ✔ seperate component for doing the math 
 
 ✔ pass values as props
 
-✔ set up server
-
 ✔ serve rates
 
-✔ contain calculator in a bordered box
-
-✔ Change loan selector into a sliding selector
-
-✔ grab values from the form 
-
-✔ grabbing the rates
-
-✔ pass all values to calculator
-
-✔ display estimate
-
-✔ found calculation errors
-
 still todo: 
-
-* confirm calcuator fixes work 
-* react is yelling, doesn't want me to use selected on select, fix that
-* set up css files according to documentation rather than having everything dumped into globals
+* resolve "defaultValue" warning in console
+* organize css according to Next js standards
 * deploy to Vercel hosting
 
 stretch goals: 
