@@ -6,10 +6,11 @@ function AutoCalculator({ rates }) {
     // console.log("Do rates pass over? ", rates) THEY DO hurray
 
     // // what we'll be grabbing from the entries of the user
+    // by setting the initial values the user does not have to click on the first option displayed on load
     const [userEntry, setUserEntry] = useState({
-        loanType: "",
-        term: "",
-        scoreRange: "",
+        loanType: "New",
+        term: "60",
+        scoreRange: "APlus",
         loanAmount: "",
     })
 
@@ -152,12 +153,12 @@ function AutoCalculator({ rates }) {
 
             </form>
 
-
-            <div>
+            {/* only displays this div if there is a result to display */}
+            < div style={!results.isResult ? { display: "none" } : { display: "block" }} >
                 <h5 id="monthlyPayment">Your estimated monthly payment is ${results.monthlyPayment}</h5>
             </div>
 
-        </div>
+        </div >
     )
 
 }

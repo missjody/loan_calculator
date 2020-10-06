@@ -23,11 +23,11 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ serve rates
 
+✔ resolve "defaultValue" warning in console
+
+✔ use isResult to control display of estimated monthly payment
+
 still todo: 
-* determine why calculator is not grabbing ALL values on EVERY change of ANY value
-* change color of slider and slider area background
-* use isResult to control display of estimated monthly payment
-* resolve "defaultValue" warning in console
 * organize css according to Next js standards
 * deploy to Vercel hosting
 
