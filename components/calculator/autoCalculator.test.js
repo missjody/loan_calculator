@@ -1,0 +1,1 @@
+// * test: if the calucator is ran three times in a row does it give the correct answer in all three scenarios? (it looks like it breaks sometimes)

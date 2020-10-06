@@ -27,6 +27,14 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ use isResult to control display of estimated monthly payment
 
+issue: 
+* upon first load, adjusting only the loan amount to $25,000, the calculator gives back either 470.66 or 452.20, when the payment amount should be $461.
+found: 
+* slider pushes the last step to state but not what slider is currently set to
+solution:
+* ??? 
+* profit
+
 still todo: 
 * organize css according to Next js standards
 * deploy to Vercel hosting

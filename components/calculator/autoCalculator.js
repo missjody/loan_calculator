@@ -85,11 +85,15 @@ function AutoCalculator({ rates }) {
     // set up results to the state to be displayed to the user
     const calculate = (userEntry, userRate) => {
         const userAmount = userEntry.loanAmount;
-        const i = userRate / 100 / 12;
+        console.log("loan amount ", userAmount)
+        const i = (userRate / 100 / 12);
+        console.log("i check for decimals", i)
         let prep = (1 + i)
         const months = userEntry.term
+        console.log("months ", months)
         const power_move = Math.pow(prep, months);
-        const monthly_prep = (userAmount * power_move * i) / (power_move - 1);
+        const monthly_prep = (userAmount * (power_move * i)) / (power_move - 1);
+        console.log("payment before rounding to two decimals ", monthly_prep)
         const monthly_payment = monthly_prep.toFixed(2);
 
         setResults({
