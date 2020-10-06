@@ -18,7 +18,7 @@ a {
 
 .container {
   min-height: 50vh;
-  max-width: 25vw;
+  max-width: 30vw;
   margin-top: 5rem;
   padding: 0.5rem 0.5rem;
   display: flex;
@@ -27,4 +27,8 @@ a {
   align-items: center;
   background-color: lightgray;
   border-radius: 1rem;
+}
+
+.custom-select {
+  margin-bottom: 1rem;
 }

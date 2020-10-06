@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import _ from 'lodash';
 
-// need to pass over props for the calculator to use -- check syntax for that
+// need to pass over props for the calculator to use 
 function AutoCalculator({ rates }) {
     // console.log("Do rates pass over? ", rates) THEY DO hurray
 
     // // what we'll be grabbing from the entries of the user
     const [userEntry, setUserEntry] = useState({
         loanType: "",
-        loanAmount: "",
-        scoreRange: "",
         term: "",
+        scoreRange: "",
+        loanAmount: "",
     })
 
     // // so we can set the interest rate
@@ -28,6 +28,10 @@ function AutoCalculator({ rates }) {
     // this will grab any userEntry and based on what name the target has,
     // updates the state value to match
     const handleInputChange = (event) => {
+        // allows us to update any of the user entries by name and value 
+        // but, is doing it this way not updating calculator in some way?
+        // that can't be it, because the values would still be set and used for calculate, right? 
+        // look into findRate and make sure it's processing properly 
         setUserEntry({ ...userEntry, [event.target.name]: event.target.value })
         if (isValid()) {
             setError("");
@@ -42,8 +46,11 @@ function AutoCalculator({ rates }) {
     // set up error catch
     const [error, setError] = useState("")
 
-    // this sets an error but how do we want it display onto the screen
     // updated to check for all values on form
+    // it is not checking values correctly, and passing a valid when there are answers missing
+    // maybe break it out to set what an unerrored state is for each of the values
+    // console log out userEntry to see what value it passes back when switched back to 
+    // like "choose your loan product"
     const isValid = () => {
         const { loanType, loanAmount, scoreRange, term } = userEntry;
         let actualError = "";
@@ -74,25 +81,15 @@ function AutoCalculator({ rates }) {
     }
 
     // do the math
-    // Calculation
     // set up results to the state to be displayed to the user
-    // we'll be passing these values in differently cause it's userRate.interest and userEntry.loanAmount, userEntry.term
     const calculate = (userEntry, userRate) => {
         const userAmount = userEntry.loanAmount;
-        // console.log("userAmount ", userAmount)
         const i = userRate / 100 / 12;
-        // console.log("i ", i)
         let prep = (1 + i)
-        // months is already being brought in with the months due to a drop down with terms 
-        // so we do not need to multiply by 12 like we have here
-        // const months = userEntry.term * 12;
         const months = userEntry.term
         const power_move = Math.pow(prep, months);
-        // console.log("power_move", power_move)
         const monthly_prep = (userAmount * power_move * i) / (power_move - 1);
-        // console.log("monthly_prep ", monthly_prep)
         const monthly_payment = monthly_prep.toFixed(2);
-        // console.log("monthly_payment ", monthly_payment)
 
         setResults({
             monthlyPayment: monthly_payment,
@@ -117,31 +114,41 @@ function AutoCalculator({ rates }) {
 
             <form>
 
-                <select className="custom-select" id="loanProduct" name="loanType" onChange={handleInputChange}>
-                    <option selected>Choose your loan product</option>
-                    <option value="New">New Auto (2017 & newer)</option>
-                    <option value="Used">Used Auto (2010 - 2016)</option>
-                </select>
 
 
-                <select className="custom-select" id="loanTerm" name="term" onChange={handleInputChange}>
-                    <option selected>Choose your loan term</option>
-                    <option value="60">60 months</option>
-                    <option value="72">72 months</option>
-                    <option value="84">84 months</option>
-                </select>
+                <label>
+                    Choose your loan product:
+                <select className="custom-select" id="loanProduct" name="loanType" value={userEntry.loanType} onChange={handleInputChange}>
+                        <option value="New">New Auto (2017 & newer)</option>
+                        <option value="Used">Used Auto (2010 - 2016)</option>
+                    </select>
+                </label>
 
-                <select className="custom-select" id="score" name="scoreRange" onChange={handleInputChange}>
-                    <option selected>Do you know your credit score</option>
-                    <option value="APlus">Excellent (740 & above)</option>
-                    <option value="A">Great (690-739)</option>
-                    <option value="B">Good (660-689)</option>
-                    <option value="C">Fair (620-659)</option>
-                    <option value="D">Ok (619 & Below)</option>
-                </select>
+                <label>
+
+                    Choose your loan term:
+                <select className="custom-select" id="loanTerm" name="term" value={userEntry.term} onChange={handleInputChange}>
+                        <option value="60">60 months</option>
+                        <option value="72">72 months</option>
+                        <option value="84">84 months</option>
+                    </select>
+
+                </label>
+
+                <label>
+
+                    Do you know your credit score:
+                <select className="custom-select" id="score" name="scoreRange" value={userEntry.scoreRange} onChange={handleInputChange}>
+                        <option value="APlus">Excellent (740 & above)</option>
+                        <option value="A">Great (690-739)</option>
+                        <option value="B">Good (660-689)</option>
+                        <option value="C">Fair (620-659)</option>
+                        <option value="D">Ok (619 & Below)</option>
+                    </select>
+                </label>
 
                 <p> You want to borrow ${userEntry.loanAmount}</p>
-                <input type="range" step={500} max={65000} min={500} name="loanAmount" onChange={handleInputChange} />
+                <input type="range" step={500} max={65000} min={500} name="loanAmount" value={userEntry.loanAmount} onChange={handleInputChange} />
 
             </form>
 

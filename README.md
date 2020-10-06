@@ -25,6 +25,8 @@ This application is not currently deployed. To test on your local machine:
 
 still todo: 
 * determine why calculator is not grabbing ALL values on EVERY change of ANY value
+* change color of slider and slider area background
+* use isResult to control display of estimated monthly payment
 * resolve "defaultValue" warning in console
 * organize css according to Next js standards
 * deploy to Vercel hosting
@@ -32,6 +34,7 @@ still todo:
 stretch goals: 
 
 * write a test or three
+  * test: if the calucator is ran three times in a row does it give the correct answer in all three scenarios? (it looks like it breaks sometimes)
 * change form into a seperate reusable component
   * feed questions into this component
 * add additional loan types 
