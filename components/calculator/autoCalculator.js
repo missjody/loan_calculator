@@ -1,12 +1,11 @@
 import React, { useState } from "react";
+import css from "./autoCalculator.module.css"
 import _ from 'lodash';
 
-// need to pass over props for the calculator to use 
 function AutoCalculator({ rates }) {
-    // console.log("Do rates pass over? ", rates) THEY DO hurray
-
     // // what we'll be grabbing from the entries of the user
     // by setting the initial values the user does not have to click on the first option displayed on load
+    // IN THEORY, however it's not updating properly 
     const [userEntry, setUserEntry] = useState({
         loanType: "New",
         term: "60",
@@ -29,17 +28,16 @@ function AutoCalculator({ rates }) {
     // this will grab any userEntry and based on what name the target has,
     // updates the state value to match
     const handleInputChange = (event) => {
+        console.log(userEntry);
         // allows us to update any of the user entries by name and value 
         // but, is doing it this way not updating calculator in some way?
-        // that can't be it, because the values would still be set and used for calculate, right? 
         // look into findRate and make sure it's processing properly 
         setUserEntry({ ...userEntry, [event.target.name]: event.target.value })
+
         if (isValid()) {
             setError("");
             // do we need to pass props to findRate()?
             findRate(userEntry, rates)
-            // pass userRate to calculator as well as userEntry
-            calculate(userEntry, userRate);
         }
     };
 
@@ -49,14 +47,11 @@ function AutoCalculator({ rates }) {
 
     // updated to check for all values on form
     // it is not checking values correctly, and passing a valid when there are answers missing
-    // maybe break it out to set what an unerrored state is for each of the values
-    // console log out userEntry to see what value it passes back when switched back to 
-    // like "choose your loan product"
     const isValid = () => {
-        const { loanType, loanAmount, scoreRange, term } = userEntry;
+        const { loanAmount } = userEntry;
         let actualError = "";
-        // confirm there are values entered
-        if (!loanAmount || !term || !loanType || !scoreRange) {
+        // confirm there is a value selected for loan amount
+        if (!loanAmount) {
             actualError = "All the values are required";
         }
         if (actualError) {
@@ -79,6 +74,9 @@ function AutoCalculator({ rates }) {
         let newObj = _.filter(grabByType, filter);
 
         setUserRate(newObj[0].rate[userEntry.scoreRange])
+
+        // pass userRate to calculator as well as userEntry
+        calculate(userEntry, userRate);
     }
 
     // do the math
@@ -106,7 +104,7 @@ function AutoCalculator({ rates }) {
 
     // return form from here
     return (
-        <div className="container">
+        <div className={css.container}>
 
             <h1 >
                 Loan Payment Calculator
@@ -115,7 +113,7 @@ function AutoCalculator({ rates }) {
             {/* loan calculator intro */}
             <h5>Calculate your estimated monthly loan payment by entering the loan information below.</h5>
 
-            <p className="error">{error}</p>
+            <p>{error}</p>
 
             <form>
 
@@ -123,7 +121,7 @@ function AutoCalculator({ rates }) {
 
                 <label>
                     Choose your loan product:
-                <select className="custom-select" id="loanProduct" name="loanType" value={userEntry.loanType} onChange={handleInputChange}>
+                <select className={css.select} name="loanType" value={userEntry.loanType} onChange={handleInputChange}>
                         <option value="New">New Auto (2017 & newer)</option>
                         <option value="Used">Used Auto (2010 - 2016)</option>
                     </select>
@@ -132,7 +130,7 @@ function AutoCalculator({ rates }) {
                 <label>
 
                     Choose your loan term:
-                <select className="custom-select" id="loanTerm" name="term" value={userEntry.term} onChange={handleInputChange}>
+                <select className={css.select} name="term" value={userEntry.term} onChange={handleInputChange}>
                         <option value="60">60 months</option>
                         <option value="72">72 months</option>
                         <option value="84">84 months</option>
@@ -143,7 +141,7 @@ function AutoCalculator({ rates }) {
                 <label>
 
                     Do you know your credit score:
-                <select className="custom-select" id="score" name="scoreRange" value={userEntry.scoreRange} onChange={handleInputChange}>
+                <select className={css.select} name="scoreRange" value={userEntry.scoreRange} onChange={handleInputChange}>
                         <option value="APlus">Excellent (740 & above)</option>
                         <option value="A">Great (690-739)</option>
                         <option value="B">Good (660-689)</option>
@@ -159,7 +157,7 @@ function AutoCalculator({ rates }) {
 
             {/* only displays this div if there is a result to display */}
             < div style={!results.isResult ? { display: "none" } : { display: "block" }} >
-                <h5 id="monthlyPayment">Your estimated monthly payment is ${results.monthlyPayment}</h5>
+                <h5>Your estimated monthly payment is ${results.monthlyPayment}</h5>
             </div>
 
         </div >
