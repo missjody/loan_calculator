@@ -27,16 +27,12 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ use isResult to control display of estimated monthly payment
 
+✔ organize css according to Next js standards
+
 issue: 
-* upon first load, adjusting only the loan amount to $25,000, the calculator gives back either 470.66 or 452.20, when the payment amount should be $461.
-found: 
-* slider pushes the last step to state but not what slider is currently set to
-solution:
-* ??? 
-* profit
+* calculator uses state of each item from the state before selection. remove the "value={userEntry.x}" from each of the entries, I think those are hold overs from setting it up to have a results button rather than being dynamic. 
 
 still todo: 
-* organize css according to Next js standards
 * deploy to Vercel hosting
 
 stretch goals: 
