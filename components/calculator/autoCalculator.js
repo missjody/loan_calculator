@@ -8,9 +8,9 @@ function AutoCalculator({ rates }) {
     // IN THEORY, however it's not updating properly 
     const [userEntry, setUserEntry] = useState({
         loanType: "New",
-        term: "60",
+        term: 60,
         scoreRange: "APlus",
-        loanAmount: "",
+        loanAmount: 0,
     })
 
     // // so we can set the interest rate
@@ -33,8 +33,8 @@ function AutoCalculator({ rates }) {
         // but, is doing it this way not updating calculator in some way?
         // look into findRate and make sure it's processing properly 
         setUserEntry({ ...userEntry, [event.target.name]: event.target.value })
-
-        if (isValid()) {
+        // console.log("value ", event.target.value)
+        if (isValid(userEntry)) {
             setError("");
             // do we need to pass props to findRate()?
             findRate(userEntry, rates)
@@ -121,7 +121,7 @@ function AutoCalculator({ rates }) {
 
                 <label>
                     Choose your loan product:
-                <select className={css.select} name="loanType" value={userEntry.loanType} onChange={handleInputChange}>
+                <select className={css.select} name="loanType" onChange={handleInputChange}>
                         <option value="New">New Auto (2017 & newer)</option>
                         <option value="Used">Used Auto (2010 - 2016)</option>
                     </select>
@@ -151,7 +151,7 @@ function AutoCalculator({ rates }) {
                 </label>
 
                 <p> You want to borrow ${userEntry.loanAmount}</p>
-                <input type="range" step={500} max={65000} min={500} name="loanAmount" value={userEntry.loanAmount} onChange={handleInputChange} />
+                <input type="range" step="500" max="65000" min="500" name="loanAmount" value={userEntry.loanAmount} onChange={handleInputChange} />
 
             </form>
 
