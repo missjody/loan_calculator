@@ -29,8 +29,9 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ organize css according to Next js standards
 
-issue: 
-* calculator uses state of each item from the state before selection. remove the "value={userEntry.x}" from each of the entries, I think those are hold overs from setting it up to have a results button rather than being dynamic. 
+✔ issue: 
+* calculator uses state of each item from the state before selection
+* resolved by running findRate() in useEffect() with the parameters to run any time the rate or the userEntry values updated
 
 still todo: 
 * deploy to Vercel hosting
