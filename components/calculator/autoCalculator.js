@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./autoCalculator.module.css"
 import _ from 'lodash';
 
@@ -24,11 +24,20 @@ function AutoCalculator({ rates }) {
         isResult: false
     })
 
+    useEffect((e) => {
+        console.log("test ", userEntry.loanAmount)
+
+        // pass userRate to calculator as well as userEntry
+        calculate(userEntry, userRate);
+
+        
+    }, [userEntry])
+
     // listen for the changes event on page
     // this will grab any userEntry and based on what name the target has,
     // updates the state value to match
     const handleInputChange = (event) => {
-        console.log(userEntry);
+        // console.log(userEntry);
         // allows us to update any of the user entries by name and value 
         // but, is doing it this way not updating calculator in some way?
         // look into findRate and make sure it's processing properly 
@@ -75,13 +84,14 @@ function AutoCalculator({ rates }) {
 
         setUserRate(newObj[0].rate[userEntry.scoreRange])
 
-        // pass userRate to calculator as well as userEntry
-        calculate(userEntry, userRate);
+        // // pass userRate to calculator as well as userEntry
+        // calculate(userEntry, userRate);
     }
 
     // do the math
     // set up results to the state to be displayed to the user
     const calculate = (userEntry, userRate) => {
+         console.log(userEntry);
         const userAmount = userEntry.loanAmount;
         console.log("loan amount ", userAmount)
         const i = (userRate / 100 / 12);
@@ -94,10 +104,15 @@ function AutoCalculator({ rates }) {
         console.log("payment before rounding to two decimals ", monthly_prep)
         const monthly_payment = monthly_prep.toFixed(2);
 
-        setResults({
-            monthlyPayment: monthly_payment,
-            isResult: true,
-        });
+        if (isNaN(monthly_payment)) {
+            return;
+        } else {
+
+            setResults({
+                monthlyPayment: monthly_payment,
+                isResult: true,
+            });
+        }
 
         return;
     }
@@ -151,7 +166,7 @@ function AutoCalculator({ rates }) {
                 </label>
 
                 <p> You want to borrow ${userEntry.loanAmount}</p>
-                <input type="range" step="500" max="65000" min="500" name="loanAmount" value={userEntry.loanAmount} onChange={handleInputChange} />
+                <input type="range" step={500} max={65000} min={500} name="loanAmount" value={userEntry.loanAmount} onChange={handleInputChange} />
 
             </form>
 
@@ -167,7 +182,3 @@ function AutoCalculator({ rates }) {
 
 
 export default AutoCalculator
-
-
-
-
