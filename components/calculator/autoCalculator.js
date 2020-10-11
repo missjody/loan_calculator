@@ -26,12 +26,12 @@ function AutoCalculator({ rates }) {
 
     useEffect((e) => {
         console.log("test ", userEntry.loanAmount)
-
+        findRate(userEntry, rates)
         // pass userRate to calculator as well as userEntry
-        calculate(userEntry, userRate);
+        // calculate(userEntry, userRate);
 
         
-    }, [userEntry])
+    }, [userEntry, userRate])
 
     // listen for the changes event on page
     // this will grab any userEntry and based on what name the target has,
@@ -46,7 +46,7 @@ function AutoCalculator({ rates }) {
         if (isValid()) {
             setError("");
             // do we need to pass props to findRate()?
-            findRate(userEntry, rates)
+            // findRate(userEntry, rates)
         }
     };
 
@@ -85,7 +85,7 @@ function AutoCalculator({ rates }) {
         setUserRate(newObj[0].rate[userEntry.scoreRange])
 
         // // pass userRate to calculator as well as userEntry
-        // calculate(userEntry, userRate);
+        calculate(userEntry, userRate);
     }
 
     // do the math
