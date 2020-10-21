@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
-    "test": "jest"
+    "test": "jest",
+    "heroku-postbuild": "next build",
+    "start": "next start -p $PORT"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
