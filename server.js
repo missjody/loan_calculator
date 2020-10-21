@@ -29,7 +29,7 @@ const next = require("next");
 /////
 // set up Express server
 
-const port = parseInt(process.env.PORT, 10) || 3000
+const port = process.env.PORT || 3000
 const dev = process.env.NODE_ENV !== "production"
 const app = next({ dev })
 const handle = app.getRequestHandler()
@@ -47,7 +47,7 @@ app.prepare()
 
     server.listen(port, (err) => {
       if (err) throw err
-      console.log("server ready, running on http://localhost:3000 ~(o v o.)~ ")
+      console.log("server ready, running on http://localhost:" + port + " ~(o v o.)~ ")
     })
 
   }).catch((ex) => {
