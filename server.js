@@ -50,13 +50,13 @@ app.prepare()
       return handle(req, res)
     })
 
-  //   server.listen(server.get('port'), (err) => {
-  //     if (err) throw err
-  //     console.log(`> Ready on http://localhost:${server.get('port')}`)
-  // })
+    server.listen(server.get('port'), (err) => {
+      if (err) throw err
+      console.log(`> Ready on http://localhost:${server.get('port')}`)
+  })
 })
 
-app.listen(PORT, () => {
-  console.log(`Our app is running on port ${ PORT }`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Our app is running on port ${ PORT }`);
+// });
 

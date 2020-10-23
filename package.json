@@ -1,11 +1,14 @@
 {
   "name": "loan-calculator",
+  "jest": {
+    "verbose": true
+  },
   "version": "5.0.0",
   "private": true,
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "test": "jest",
+    "test": "jest --watch",
     "heroku-postbuild": "next build",
     "start": "next start -p $PORT"
   },
@@ -13,7 +16,6 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.1.0",
-    "jest": "^26.5.2",
     "next": "^9.5.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
