@@ -40,7 +40,7 @@ export default function Index({ rates }) {
 // }
 
 Index.getInitialProps = async function ({req}) {
-    const baseUrl = req ? `${req.protocol}://${req.headers.host}` : '';
+    const baseUrl = req ? `https://${req.headers.host}` : '';
     const res = await fetch(`${baseUrl}/api/rates`)
     const data = await res.json()
     return { rates: {data}}
