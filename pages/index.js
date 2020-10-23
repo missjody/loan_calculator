@@ -25,16 +25,23 @@ export default function Index({ rates }) {
 
 // from https://www.youtube.com/watch?v=WzE08kNG4mg
 // pulling in api, console log shows data on server side but not client side
+// Index.getInitialProps = async function ({req}) {
+//     console.log("What is req", {req})
+
+//     const response = await fetch(req.protocol + "://" + req.get("host") + "/api/rates");
+//     const data = await response.json();
+
+//     // console.log("Rendering... ")
+//     // console.log("Data: ", data.loans.New)
+//     return {
+//         rates: { data }
+//     }
+
+// }
+
 Index.getInitialProps = async function ({req}) {
-    console.log("What is req", {req})
-
-    const response = await fetch(window.location.protocol + "://" + window.location.host + "/api/rates");
-    const data = await response.json();
-
-    // console.log("Rendering... ")
-    // console.log("Data: ", data.loans.New)
-    return {
-        rates: { data }
-    }
-
+    const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
+    const res = await fetch(`${baseUrl}/api/rates`)
+    const data = await res.json()
+    return { rates: {data}}
 }
