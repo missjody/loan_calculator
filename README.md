@@ -1,7 +1,7 @@
 # Loan Calculator 
 *building a loan calculator in incremental steps*
 
-~~Link to most up to date version of Loan Calculator [here](https://loan-calculator-project.herokuapp.com/)~~
+Link to most up to date version of Loan Calculator [here](https://infinite-escarpment-31136.herokuapp.com/)
 
 ## Version 5
 
@@ -29,12 +29,7 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ organize css according to Next js standards
 
-✔ issue: 
-* calculator uses state of each item from the state before selection
-* resolved by running findRate() in useEffect() with the parameters to run any time the rate or the userEntry values updated
-
-still todo: 
-* deploy to Vercel hosting
+✔ deployed
 
 stretch goals: 
 
