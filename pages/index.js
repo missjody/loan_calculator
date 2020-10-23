@@ -28,7 +28,7 @@ export default function Index({ rates }) {
 Index.getInitialProps = async function ({req}) {
     console.log("What is req", {req})
 
-    const response = await fetch(req.protocol + "://" + req.get("host") + "/api/rates");
+    const response = await fetch(req.protocol + "://" + req.headers.host + "/api/rates");
     const data = await response.json();
 
     // console.log("Rendering... ")
