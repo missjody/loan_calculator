@@ -1,19 +1,34 @@
 # Loan Calculator 
 *building a loan calculator in incremental steps*
 
-~~Link to most up to date version of Loan Calculator [here](https://loan-calculator-project.herokuapp.com/)~~
+Link to most up to date version of Loan Calculator [here](https://infinite-escarpment-31136.herokuapp.com/)
+
+## Version 6
+
+*refactor in redux*
+
+* refactor 
+
+* break down into more components
+  * focus being on changing impure functions to pure functions
+  * calculator shell
+  * user friendly sliding bar
+  * score range options
+  * terms options
+  * loan types options
+
+* jest
+  * test: snapshot test for score range options
+  * test: test calculator functionality 
+  
+* capture user contact info before displaying the payment info?
+  * give nice little disclaimer 
+  * hitting cancel backs out to the beginning, clearing entries
+  * write email and entry and results to a doc
 
 ## Version 5
 
-* updated to a react app with next.js framework and express.js server
-
-*instructions for running on local machine*
-
-This application is not currently deployed. To test on your local machine:
-* git clone https://github.com/missjody/loan_calculator.git
-* npm i 
-* npm run dev
-* access localhost:3000
+*updated to a react app with next.js framework and express.js server*
 
 ✔ update to react app
 
@@ -23,31 +38,10 @@ This application is not currently deployed. To test on your local machine:
 
 ✔ serve rates
 
-✔ resolve "defaultValue" warning in console
-
-✔ use isResult to control display of estimated monthly payment
-
 ✔ organize css according to Next js standards
 
-✔ issue: 
-* calculator uses state of each item from the state before selection
-* resolved by running findRate() in useEffect() with the parameters to run any time the rate or the userEntry values updated
+✔ deployed
 
-still todo: 
-* deploy to Vercel hosting
-
-stretch goals: 
-
-* write a test or three
-  * test: if the calucator is ran three times in a row does it give the correct answer in all three scenarios? (it looks like it breaks sometimes)
-* change form into a seperate reusable component
-  * feed questions into this component
-* add additional loan types 
-  * each with different math compenents  
-* capture user contact info before displaying the payment info
-  * give nice little disclaimer in the model
-  * hitting cancel backs out to the beginning, clearing entries
-  * write email and entry and results to a doc
 
 ## Version 4
 
@@ -112,6 +106,3 @@ Still to do on this version: pop up asking them to enter information if inputs a
 ## Version 1
 
 Sat up simple interest calculator after retrieving the formula from calculatorsoup.com. Original version features two buttons: one to run the calculation function and one to refresh the page to restart the process.
-
-
-
