@@ -7,7 +7,10 @@ Link to Version 5 of Loan Calculator [here](https://infinite-escarpment-31136.he
 
 *refactor in redux*
 
+* deploy version 5 to Azure and write an article outlining how to do so
+
 * refactor 
+  * keep notes about the refactor to write an article on how to do it
 
 * break down into more components
   * focus being on changing impure functions to pure functions
