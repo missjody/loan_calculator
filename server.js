@@ -7,25 +7,6 @@
 const express = require("express");
 const next = require("next");
 
-// custom-server-express for nextjs
-// do we want or need this?
-// Populate body property
-// Without the use of the body-parser package req.body will return undefined. 
-// To get express to populate req.body you need to install the body parser package and call the package within server.js.
-
-// Install the package:
-
-// npm install body-parser
-// Use the package within server.js:
-
-// const bodyParser = require('body-parser');
-
-// app.prepare().then(() => {
-//   const server = express();
-//   server.use(bodyParser.urlencoded({ extended: true }))
-//   server.use(bodyParser.json())
-// })
-
 /////
 // set up Express server
 
@@ -55,8 +36,3 @@ app.prepare()
       console.log(`> Ready on http://localhost:${server.get('port')}`)
   })
 })
-
-// app.listen(PORT, () => {
-//   console.log(`Our app is running on port ${ PORT }`);
-// });
-

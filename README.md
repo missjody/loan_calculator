@@ -9,13 +9,15 @@ Link to Version 5 of Loan Calculator [here](https://infinite-escarpment-31136.he
 
 * deploy version 5 to Azure and write an article outlining how to do so
 
+* answer the question why next doesn't use an index.html in public
+
 * refactor 
   * keep notes about the refactor to write an article on how to do it
 
 * break down into more components
   * focus being on changing impure functions to pure functions
   * calculator shell
-  * user friendly sliding bar
+  * user friendly sliding bar (update UI)
   * score range options
   * terms options
   * loan types options
@@ -28,6 +30,8 @@ Link to Version 5 of Loan Calculator [here](https://infinite-escarpment-31136.he
   * give nice little disclaimer 
   * hitting cancel backs out to the beginning, clearing entries
   * write email and entry and results to a doc
+
+* service worker?
 
 ## Version 5
 

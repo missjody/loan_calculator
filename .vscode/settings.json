@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/1b3ebc32-a1ab-411e-af90-41762ff2f0a4/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/LoanCalcHomework",
+    "appService.deploySubpath": "."
+}
